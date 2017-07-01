@@ -1,6 +1,7 @@
 const path = require("path");
 
 module.exports = {
+  target: "electron",
   entry: ["./src/index.js"],
   output: {
     filename: "bundle.js",
