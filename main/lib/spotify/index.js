@@ -15,8 +15,7 @@ function execAppleScript(cmd) {
 async function getPlayerState() {
   const { playerState } = commands;
   const serializedState = await execAppleScript(playerState);
-  const state = JSON.parse(serializedState);
-  return { state };
+  return JSON.parse(serializedState);
 }
 
 async function execCommand(cmd) {

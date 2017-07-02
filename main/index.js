@@ -23,7 +23,12 @@ app.on("ready", () => {
   });
 
   ipcMain.on("command", async (event, command) => {
-    const response = await spotify[command]();
+    let response;
+    try {
+      response = await spotify[command]();
+    } catch ({ message }) {
+      response = { status: 'error', message };
+    }
     event.sender.send("command response", response);
   });
 });
