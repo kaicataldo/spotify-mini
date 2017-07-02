@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="buttons">
     <button @click="triggerPrev">Previous</button>
     <button @click="triggerTogglePlay">{{ toggleText }}</button>
     <button @click="triggerNext">Next</button>
@@ -27,3 +27,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.buttons {
+  -webkit-app-region: no-drag;
+}
+</style>

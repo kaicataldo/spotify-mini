@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="searchbar">
     <input type="text"></input>
   </div>
 </template>
@@ -9,3 +9,9 @@ export default {
   name: "search",
 };
 </script>
+
+<style scoped>
+.searchbar {
+  -webkit-app-region: no-drag;
+}
+</style>

@@ -8,7 +8,7 @@ const { app, BrowserWindow, ipcMain } = electron;
 let mainWindow;
 
 app.on("ready", async () => {
-  mainWindow = new BrowserWindow({ width: 800, height: 600 });
+  mainWindow = new BrowserWindow({ width: 800, height: 600, frame: false });
   mainWindow.loadURL(
     url.format({
       pathname: path.join(__dirname, "../index.html"),
