@@ -4,8 +4,8 @@
   "description": "A macOS menubar controller for Spotify!",
   "scripts": {
     "start": "npm run build && electron main/index.js",
-    "build": "rimraf dist && NODE_ENV=production webpack -p",
-    "watch": "NODE_ENV=development webpack --watch src",
+    "build": "rimraf dist && webpack -p",
+    "watch": "webpack --watch src",
     "dev": "npm run watch & npm run start",
     "lint": "eslint --ext .js,.vue .",
     "prettier": "prettier --write '{,!(dist)/**/}*.js'",
