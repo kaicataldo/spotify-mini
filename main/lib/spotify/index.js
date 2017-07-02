@@ -34,5 +34,8 @@ module.exports = {
   },
   next() {
     return execCommand("next");
+  },
+  getState() {
+    return getPlayerState();
   }
 };

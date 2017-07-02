@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 
 module.exports = {
   target: "electron",
@@ -27,5 +28,12 @@ module.exports = {
     alias: {
       vue$: "vue/dist/vue.esm.js"
     }
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: `"${process.env.NODE_ENV}"`
+      }
+    })
+  ]
 };

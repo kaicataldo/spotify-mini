@@ -1,29 +1,28 @@
 <template>
   <div>
     <button @click="triggerPrev">Previous</button>
-    <button @click="triggerTogglePlay">Play</button>
+    <button @click="triggerTogglePlay">{{ toggleText }}</button>
     <button @click="triggerNext">Next</button>
   </div>
 </template>
 
 <script>
-import electron from 'electron';
-const { ipcRenderer } = electron;
-
-ipcRenderer.on('command response', (event, args) => console.log(args));
-ipcRenderer.on('player state', (event, args) => console.log(args));
-
 export default {
-  name: 'controls',
+  name: "controls",
+  computed: {
+    toggleText() {
+      return this.$store.state.app.player_state;
+    }
+  },
   methods: {
     triggerPrev() {
-      ipcRenderer.send('command', 'prev');
+      this.$store.dispatch("prev");
     },
     triggerTogglePlay() {
-      ipcRenderer.send('command', 'togglePlay');
+      this.$store.dispatch("togglePlay");
     },
     triggerNext() {
-      ipcRenderer.send('command', 'next');
+      this.$store.dispatch("next");
     }
   }
 };

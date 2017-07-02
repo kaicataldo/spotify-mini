@@ -4,8 +4,8 @@
   "description": "A macOS menubar controller for Spotify!",
   "scripts": {
     "start": "npm run build && electron main/index.js",
-    "build": "rimraf dist && webpack -p",
-    "watch": "webpack --watch src",
+    "build": "rimraf dist && NODE_ENV=production webpack -p",
+    "watch": "NODE_ENV=development webpack --watch src",
     "dev": "npm run watch & npm run start",
     "lint": "eslint --ext .js,.vue .",
     "prettier": "prettier --write '{,!(dist)/**/}*.js'",
@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "vue": "^2.3.4",
-    "vue-router": "^2.7.0"
+    "vue-router": "^2.7.0",
+    "vuex": "^2.3.1"
   }
 }

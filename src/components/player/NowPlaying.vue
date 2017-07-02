@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'now-playing',
+  name: "now-playing",
 };
 </script>

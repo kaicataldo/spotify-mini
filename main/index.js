@@ -7,7 +7,7 @@ const { app, BrowserWindow, ipcMain } = electron;
 // Keep a global reference to mainWindow to prevent garbage collection from ending the process.
 let mainWindow;
 
-app.on("ready", () => {
+app.on("ready", async () => {
   mainWindow = new BrowserWindow({ width: 800, height: 600 });
   mainWindow.loadURL(
     url.format({
@@ -27,8 +27,8 @@ app.on("ready", () => {
     try {
       response = await spotify[command]();
     } catch ({ message }) {
-      response = { status: 'error', message };
+      response = { status: "error", message };
     }
-    event.sender.send("command response", response);
+    event.sender.send(command, response);
   });
 });

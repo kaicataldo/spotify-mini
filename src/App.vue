@@ -1,11 +1,18 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <div v-if="hasLoaded">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  name: "app",
+  computed: {
+    hasLoaded() {
+      return this.$store.state.hasLoaded;
+    }
+  }
 }
 </script>
