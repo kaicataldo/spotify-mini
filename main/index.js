@@ -22,16 +22,8 @@ app.on("ready", () => {
     mainWindow = null;
   });
 
-  ipcMain.on('command', async (event, command) => {
+  ipcMain.on("command", async (event, command) => {
     const response = await spotify[command]();
-
-    if (command === 'togglePlay') {
-      const state = await spotify.playerState();
-      event.sender.send('player state', state);
-    }
-
-    if (response.length) {
-      event.sender.send('command response', response);
-    }
+    event.sender.send("command response", response);
   });
 });
