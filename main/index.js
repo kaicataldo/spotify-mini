@@ -7,8 +7,8 @@ const { app, BrowserWindow, ipcMain } = electron;
 // Keep a global reference to mainWindow to prevent garbage collection from ending the process.
 let mainWindow;
 
-app.on("ready", async () => {
-  mainWindow = new BrowserWindow({ width: 800, height: 600, frame: false });
+app.on("ready", () => {
+  mainWindow = new BrowserWindow({ width: 400, height: 600, frame: false });
   mainWindow.loadURL(
     url.format({
       pathname: path.join(__dirname, "../index.html"),
