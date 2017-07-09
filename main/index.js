@@ -28,7 +28,7 @@ app.on("ready", async () => {
     }
   }
 
-  win = new BrowserWindow({ width: 400, height: 600, frame: false });
+  win = new BrowserWindow({ width: 400, height: 600, backgroundColor: '#181818', frame: false });
   win.loadURL(
     url.format({
       pathname: path.join(__dirname, "../index.html"),
@@ -36,7 +36,6 @@ app.on("ready", async () => {
       slashes: true
     })
   );
-
   win
     .on("closed", () => {
       win = null;
@@ -44,7 +43,6 @@ app.on("ready", async () => {
     })
     .on("blur", () => win.hide())
     .on("focus", showWindow);
-
   win.hide();
 
   tray = new Tray(path.join(__dirname, "../assets/icon.png"));

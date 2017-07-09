@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Now Playing:</h1>
     <img class="album-artwork" :src="albumArtworkSrc" />
     <p>Artist: {{ artist }}</p>
     <p>Album: {{ album }}</p>
