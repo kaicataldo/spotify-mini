@@ -1,7 +1,7 @@
 const path = require("path");
 const url = require("url");
 const electron = require("electron");
-const { app, BrowserWindow, Tray, ipcMain } = electron;
+const { app, BrowserWindow, Tray, globalShortcut, ipcMain } = electron;
 const spotify = require("./lib/spotify");
 
 // Keep a global reference to win/tray to prevent garbage collection from ending the process.
@@ -23,6 +23,20 @@ app.on("ready", async () => {
   async function showWindow() {
     win.webContents.send("setState", await execCommand("getState"));
     win.show();
+  }
+
+  function toggleWindow(
+    { x: trayX, y: trayY, width: trayWidth } = tray.getBounds()
+  ) {
+    if (win.isVisible()) {
+      win.hide();
+    } else {
+      const trayWidthOffset = trayWidth / 2;
+      const [winWidth] = win.getSize();
+      const winWidthOffset = winWidth / 2;
+      win.setPosition(trayX + trayWidthOffset - winWidthOffset, trayY);
+      showWindow();
+    }
   }
 
   win = new BrowserWindow({ width: 400, height: 600, frame: false });
@@ -47,13 +61,9 @@ app.on("ready", async () => {
 
   tray = new Tray(path.join(__dirname, "../assets/icon.png"));
   tray.setToolTip("Spotify Mini\nA macOS menubar controller for Spotify!");
-  tray.on("click", (event, { x: trayX, y: trayY, width: trayWidth }) => {
-    win.isVisible() ? win.hide() : showWindow();
-    const trayWidthOffset = trayWidth / 2;
-    const [winWidth] = win.getSize();
-    const winWidthOffset = winWidth / 2;
-    win.setPosition(trayX + trayWidthOffset - winWidthOffset, trayY);
-  });
+  tray.on("click", (event, bounds) => toggleWindow(bounds));
+
+  globalShortcut.register("Command+Control+P", () => toggleWindow());
 });
 
 app.dock.hide();
