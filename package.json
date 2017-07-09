@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "A macOS menubar controller for Spotify!",
   "scripts": {
-    "start-app": "electron main/index.js",
-    "build": "rimraf dist && webpack -p",
-    "start": "npm run build && npm run start-app",
-    "dev": "rimraf dist && webpack && (webpack --watch src & npm run start-app)",
+    "start": "npm run build -- -p && electron main/index.js",
+    "dev": "npm run build && (npm run watch & nodemon --watch main --exec 'electron main/index.js')",
+    "test": "npm run lint",
+    "build": "rimraf dist && webpack",
+    "watch": "webpack --watch src",
     "lint": "eslint --ext .js,.vue .",
-    "prettier": "prettier --write '{,!(dist)/**/}*.js'",
-    "test": "npm run lint"
+    "prettier": "prettier --write '{,!(dist)/**/}*.js'"
   },
   "author": "Kai Cataldo <kaicataldo@gmail.com>",
   "license": "MIT",
@@ -24,6 +24,7 @@
     "electron": "^1.6.11",
     "eslint": "^4.1.1",
     "eslint-plugin-vue": "^3.5.0",
+    "nodemon": "^1.11.0",
     "prettier": "^1.5.2",
     "rimraf": "^2.6.1",
     "vue-loader": "^13.0.0",
