@@ -8,20 +8,9 @@ const spotify = require("./lib/spotify");
 let win;
 let tray;
 
-async function execCommand(command) {
-  let response;
-  try {
-    response = await spotify[command]();
-  } catch ({ message }) {
-    response = { status: "error", message };
-    console.error(`Error: ${message}`);
-  }
-  return response;
-}
-
 app.on("ready", async () => {
   async function showWindow() {
-    win.webContents.send("setState", await execCommand("getState"));
+    win.webContents.send("setState", await spotify.getState());
     win.show();
   }
 
@@ -57,7 +46,7 @@ app.on("ready", async () => {
     .on("focus", showWindow);
 
   win.hide();
-  win.webContents.send("setState", await execCommand("getState"));
+  win.webContents.send("setState", await spotify.getState());
 
   tray = new Tray(path.join(__dirname, "../assets/icon.png"));
   tray.setToolTip("Spotify Mini\nA macOS menubar controller for Spotify!");
@@ -69,5 +58,5 @@ app.on("ready", async () => {
 app.dock.hide();
 
 ipcMain.on("command", async (event, command) =>
-  event.sender.send("setState", await execCommand(command))
+  event.sender.send("setState", await spotify.execCommand(command))
 );
