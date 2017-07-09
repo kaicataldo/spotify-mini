@@ -43,6 +43,7 @@ app.on("ready", async () => {
     })
     .on("blur", () => win.hide())
     .on("focus", showWindow);
+  win.setAlwaysOnTop(true);
   win.hide();
 
   tray = new Tray(path.join(__dirname, "../assets/icon.png"));
