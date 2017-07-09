@@ -28,6 +28,7 @@ app.on("ready", () => {
       response = await spotify[command]();
     } catch ({ message }) {
       response = { status: "error", message };
+      console.error(response);
     }
     event.sender.send("setState", response);
   });
