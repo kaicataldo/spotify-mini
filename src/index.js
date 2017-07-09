@@ -8,8 +8,5 @@ new Vue({
   template: "<app></app>",
   components: { App },
   router,
-  store,
-  mounted() {
-    this.$store.dispatch("getState");
-  }
+  store
 });

@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import * as actions from "./actions";
 import * as mutations from "./mutations";
-import * as plugins from "./plugins" ;
+import * as plugins from "./plugins";
 
 Vue.use(Vuex);
 
