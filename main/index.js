@@ -46,7 +46,6 @@ app.on("ready", async () => {
     .on("focus", showWindow);
 
   win.hide();
-  win.webContents.send("setState", await spotify.getState());
 
   tray = new Tray(path.join(__dirname, "../assets/icon.png"));
   tray.setToolTip("Spotify Mini\nA macOS menubar controller for Spotify!");

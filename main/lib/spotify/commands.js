@@ -18,7 +18,7 @@ module.exports = {
   next: ifRunning`tell application \"Spotify\" to next track`,
   playerState: ifRunning`tell application \"Spotify\"
     set state to \"{\"
-    set state to state & \"\\\"player_state\\\":\" & \"\\\"\" & (player state as text) & \"\\\",\"
+    set state to state & \"\\\"player_state\\\":\" & \"\\\"\" & player state & \"\\\",\"
     set state to state & \"\\\"track_name\\\":\" & \"\\\"\" & name of current track & \"\\\",\"
     set state to state & \"\\\"track_id\\\":\" & \"\\\"\" & id of current track & \"\\\",\"
     set state to state & \"\\\"artist_name\\\":\" & \"\\\"\" & artist of current track & \"\\\",\"
