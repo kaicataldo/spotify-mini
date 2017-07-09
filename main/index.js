@@ -23,12 +23,15 @@ app.on("ready", async () => {
       const trayWidthOffset = trayWidth / 2;
       const [winWidth] = win.getSize();
       const winWidthOffset = winWidth / 2;
-      win.setPosition(trayX + trayWidthOffset - winWidthOffset, trayY);
+
+      // x must be an integer
+      const winX = Math.round(trayX + trayWidthOffset - winWidthOffset);
+      win.setPosition(winX, trayY);
       showWindow();
     }
   }
 
-  win = new BrowserWindow({ width: 400, height: 600, backgroundColor: '#181818', frame: false });
+  win = new BrowserWindow({ width: 320, height: 600, backgroundColor: '#181818', frame: false });
   win.loadURL(
     url.format({
       pathname: path.join(__dirname, "../index.html"),
