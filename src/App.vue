@@ -18,9 +18,11 @@ export default {
 </script>
 
 <style>
+@import "normalize.css";
+
 body {
-  color: #fff;
   background-color: #181818;
+  color: #fff;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 200;
   text-align: center;
@@ -29,6 +31,6 @@ body {
 }
 
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 </style>

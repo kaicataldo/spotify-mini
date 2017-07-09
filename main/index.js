@@ -31,7 +31,12 @@ app.on("ready", async () => {
     }
   }
 
-  win = new BrowserWindow({ width: 320, height: 600, backgroundColor: '#181818', frame: false });
+  win = new BrowserWindow({
+    width: 320,
+    height: 600,
+    backgroundColor: "#181818",
+    frame: false
+  });
   win.loadURL(
     url.format({
       pathname: path.join(__dirname, "../index.html"),
