@@ -47,7 +47,13 @@ app.on("ready", async () => {
 
   tray = new Tray(path.join(__dirname, "../assets/icon.png"));
   tray.setToolTip("Spotify Mini\nA macOS menubar controller for Spotify!");
-  tray.on("click", () => (win.isVisible() ? win.hide() : showWindow()));
+  tray.on("click", (event, { x: trayX, y: trayY, width: trayWidth }) => {
+    win.isVisible() ? win.hide() : showWindow();
+    const trayWidthOffset = trayWidth / 2;
+    const [winWidth] = win.getSize();
+    const winWidthOffset = winWidth / 2;
+    win.setPosition(trayX + trayWidthOffset - winWidthOffset, trayY);
+  });
 });
 
 app.dock.hide();
