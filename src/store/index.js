@@ -1,11 +1,13 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import electron from "electron";
+const { ipcRenderer } = electron;
 import * as actions from "./actions";
 import * as mutations from "./mutations";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
     hasLoaded: false,
     app: {
@@ -23,3 +25,7 @@ export default new Vuex.Store({
   actions,
   mutations
 });
+
+ipcRenderer.on("setState", (event, state) => store.commit("setState", state));
+
+export default store;

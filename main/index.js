@@ -29,6 +29,6 @@ app.on("ready", () => {
     } catch ({ message }) {
       response = { status: "error", message };
     }
-    event.sender.send(command, response);
+    event.sender.send("setState", response);
   });
 });
