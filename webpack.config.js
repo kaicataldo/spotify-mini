@@ -1,12 +1,13 @@
 const path = require("path");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   target: "electron",
-  entry: ["./src/index.js"],
+  entry: ["./src/renderer/index.js"],
   output: {
-    filename: "bundle.js",
+    filename: "renderer/index.js",
     path: path.resolve(__dirname, "dist"),
-    publicPath: "/dist/"
+    publicPath: "/dist"
   },
   module: {
     rules: [
@@ -27,5 +28,12 @@ module.exports = {
     alias: {
       vue$: "vue/dist/vue.esm.js"
     }
-  }
+  },
+  plugins: [
+    new CopyWebpackPlugin([
+      { from: "src/assets", to: "assets" },
+      { from: "src/main", to: "main" },
+      { from: "src/index.html" }
+    ])
+  ]
 };

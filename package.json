@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "A macOS menubar controller for Spotify!",
   "scripts": {
-    "start": "npm run build -- -p && electron main/index.js",
-    "dev": "npm run build && (npm run watch & nodemon --watch main --exec 'electron main/index.js')",
+    "start": "npm run build -- -p && electron dist/main/index.js",
+    "dev": "npm run build && (npm run watch & nodemon --watch main --exec 'electron dist/main/index.js')",
     "test": "npm run lint",
     "build": "rimraf dist && webpack",
     "watch": "webpack --watch src",
@@ -22,6 +22,7 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-3": "^6.24.1",
+    "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.4",
     "electron": "^1.6.11",
     "eslint": "^4.1.1",
