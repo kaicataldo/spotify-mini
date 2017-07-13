@@ -3,7 +3,9 @@
     <search></search>
     <now-playing></now-playing>
     <controls></controls>
-    <router-link to="/settings">Placeholder link to settings</router-link>
+    <router-link to="/settings">
+      <span v-once v-html="cogSvg" class="icon"></span>
+    </router-link>
   </div>
   <div v-else-if="status === 'not_running'">
     <h1>Spotify isn't running! Start Spotify and try again.</h1>
@@ -17,6 +19,7 @@
 import Search from "./search";
 import NowPlaying from "./NowPlaying";
 import Controls from "./Controls";
+import cogSvg from "open-iconic/svg/cog.svg";
 
 export default {
   name: "player",
@@ -28,7 +31,16 @@ export default {
   computed: {
     status() {
       return this.$store.state.app.status;
+    },
+    cogSvg() {
+      return cogSvg;
     }
   }
 };
 </script>
+
+<style scoped>
+.icon {
+  fill: #fff;
+}
+</style>

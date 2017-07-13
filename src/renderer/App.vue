@@ -33,4 +33,13 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
+
+.icon {
+  -webkit-app-region: no-drag;
+
+  svg {
+    width: 18px;
+  }
+}
 </style>
+

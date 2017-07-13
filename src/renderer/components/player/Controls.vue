@@ -1,17 +1,35 @@
 <template>
   <div class="buttons">
-    <button @click="triggerPrev">Previous</button>
-    <button @click="triggerTogglePlay">{{ toggleText }}</button>
-    <button @click="triggerNext">Next</button>
+    <span @click="triggerPrev" v-once v-html="prevSvg" class="icon"></span>
+    <span @click="triggerTogglePlay" v-if="isPlaying" v-once v-html="pauseSvg" class="icon"></span>
+    <span @click="triggerTogglePlay" v-else v-once v-html="playSvg" class="icon"></span>
+    <span @click="triggerNext" v-once v-html="nextSvg" class="icon"></span>
   </div>
 </template>
 
 <script>
+import playSvg from "open-iconic/svg/media-play.svg";
+import pauseSvg from "open-iconic/svg/media-pause.svg";
+import prevSvg from "open-iconic/svg/media-step-backward.svg";
+import nextSvg from "open-iconic/svg/media-step-forward.svg";
+
 export default {
   name: "controls",
   computed: {
-    toggleText() {
-      return this.$store.state.app.player_state;
+    isPlaying() {
+      return this.$store.state.app.player_state === "playing";
+    },
+    playSvg() {
+      return playSvg;
+    },
+    pauseSvg() {
+      return pauseSvg;
+    },
+    prevSvg() {
+      return prevSvg;
+    },
+    nextSvg() {
+      return nextSvg;
     }
   },
   methods: {
@@ -29,7 +47,7 @@ export default {
 </script>
 
 <style scoped>
-.buttons {
-  -webkit-app-region: no-drag;
+.icon {
+  fill: #a0a0a0;
 }
 </style>
