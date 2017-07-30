@@ -1,5 +1,5 @@
 module.exports = {
-  parser: "postcss-scss",
+  parser: 'postcss-scss',
   plugins: {
     precss: {}
   }

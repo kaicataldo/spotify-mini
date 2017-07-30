@@ -11,7 +11,7 @@
     "lint": "npm run eslint && npm run stylelint",
     "eslint": "eslint --ext .js,.vue .",
     "stylelint": "stylelint 'src/**/*.vue'",
-    "prettier": "prettier --write '{,!(dist)/**/}*.js'"
+    "prettier": "prettier --single-quote --write '{,!(dist)/**/}*.js'"
   },
   "author": "Kai Cataldo <kaicataldo@gmail.com>",
   "license": "MIT",

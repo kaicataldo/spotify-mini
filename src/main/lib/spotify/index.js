@@ -1,5 +1,5 @@
-const { exec } = require("child_process");
-const commands = require("./commands");
+const { exec } = require('child_process');
+const commands = require('./commands');
 
 function execAppleScript(cmd) {
   return new Promise((resolve, reject) => {
@@ -21,12 +21,12 @@ async function getState() {
 async function execCommand(cmd) {
   let response;
   try {
-    if (cmd !== "getState") {
+    if (cmd !== 'getState') {
       await execAppleScript(commands[cmd]);
     }
     response = await getState();
   } catch ({ message }) {
-    response = { status: "error", message };
+    response = { status: 'error', message };
     console.error(`Error: ${message}`);
   }
   return response;

@@ -1,43 +1,43 @@
-const path = require("path");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  target: "electron",
-  entry: ["./src/renderer/index.js"],
+  target: 'electron',
+  entry: './src/renderer/index.js',
   output: {
-    filename: "renderer/index.js",
-    path: path.resolve(__dirname, "dist"),
-    publicPath: "/dist"
+    filename: 'renderer/index.js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/dist'
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        loader: "babel-loader",
-        include: [path.resolve(__dirname, "src/renderer")]
+        loader: 'babel-loader',
+        include: [path.resolve(__dirname, 'src/renderer')]
       },
       {
         test: /\.vue$/,
-        loader: "vue-loader"
+        loader: 'vue-loader'
       },
       {
         test: /\.svg$/,
-        loader: "svg-inline-loader"
+        loader: 'svg-inline-loader'
       }
     ]
   },
   resolve: {
-    extensions: [".js", ".vue"],
-    modules: [path.resolve(__dirname, "src/renderer"), "node_modules"],
+    extensions: ['.js', '.vue'],
+    modules: [path.resolve(__dirname, 'src/renderer'), 'node_modules'],
     alias: {
-      vue$: "vue/dist/vue.esm.js"
+      vue$: 'vue/dist/vue.esm.js'
     }
   },
   plugins: [
     new CopyWebpackPlugin([
-      { from: "src/assets", to: "assets" },
-      { from: "src/main", to: "main" },
-      { from: "src/index.html" }
+      { from: 'src/assets', to: 'assets' },
+      { from: 'src/main', to: 'main' },
+      { from: 'src/index.html' }
     ])
   ]
 };
