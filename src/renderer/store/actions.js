@@ -13,6 +13,13 @@ export function togglePlay() {
   ipcRenderer.send("command", "togglePlay");
 }
 
-export function getState() {
+export function getPlayerState() {
   ipcRenderer.send("command", "getState");
+}
+
+export function setPlayerState({ state, commit }, payload) {
+  if (!state.hasLoaded) {
+    commit("setLoaded");
+  }
+  commit("setPlayerState", payload);
 }

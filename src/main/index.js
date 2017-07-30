@@ -64,5 +64,5 @@ app.on("ready", async () => {
 app.dock.hide();
 
 ipcMain.on("command", async (event, command) =>
-  event.sender.send("setState", await spotify.execCommand(command))
+  event.sender.send("playerStateUpdated", await spotify.execCommand(command))
 );

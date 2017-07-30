@@ -10,6 +10,6 @@ new Vue({
   router,
   store,
   mounted() {
-    this.$store.dispatch("getState");
+    this.$store.dispatch("getPlayerState");
   }
 });

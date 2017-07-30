@@ -9,7 +9,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     hasLoaded: false,
-    app: {
+    player: {
       player_state: "",
       track_name: "",
       track_id: "",

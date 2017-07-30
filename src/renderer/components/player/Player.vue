@@ -30,7 +30,7 @@ export default {
   },
   computed: {
     status() {
-      return this.$store.state.app.status;
+      return this.$store.state.player.status;
     },
     cogSvg() {
       return cogSvg;

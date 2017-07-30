@@ -12,16 +12,16 @@ export default {
   name: "now-playing",
   computed: {
     artist() {
-      return this.$store.state.app.artist_name;
+      return this.$store.state.player.artist_name;
     },
     album() {
-      return this.$store.state.app.album_name;
+      return this.$store.state.player.album_name;
     },
     track() {
-      return this.$store.state.app.track_name;
+      return this.$store.state.player.track_name;
     },
     albumArtworkSrc() {
-      return this.$store.state.app.artwork_url;
+      return this.$store.state.player.artwork_url;
     }
   }
 };

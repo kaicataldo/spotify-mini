@@ -17,7 +17,7 @@ export default {
   name: "controls",
   computed: {
     isPlaying() {
-      return this.$store.state.app.player_state === "playing";
+      return this.$store.state.player.player_state === "playing";
     },
     playSvg() {
       return playSvg;

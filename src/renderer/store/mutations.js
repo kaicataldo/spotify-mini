@@ -1,6 +1,7 @@
-export function setState(state, newState) {
-  state.app = newState;
-  if (!state.hasLoaded) {
-    state.hasLoaded = true;
-  }
+export function setPlayerState(state, payload) {
+  state.player = payload;
+}
+
+export function setLoaded(state) {
+  state.hasLoaded = true;
 }
