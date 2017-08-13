@@ -1,5 +1,5 @@
 <template>
-  <div v-if="status === 'success' || status === 'stopped'" class="player">
+  <div v-if="status === 'running'" class="player">
     <search></search>
     <now-playing></now-playing>
     <controls></controls>

@@ -7,7 +7,7 @@ function checkStatus(str) {
     if ((get name of every application process) contains "Spotify") then
       tell application \"Spotify\"
         if ((player state as string) is equal to "stopped") then
-          return \"{\\\"status\\\":\\\"stopped\\\"}\"
+          return \"{\\\"player_state\\\":\\\"stopped\\\",\\\"status\\\":\\\"running\\\"}\"
         else
           ${str}
         end if
@@ -31,7 +31,7 @@ export default {
     set state to state & \"\\\"album_name\\\":\" & \"\\\"\" & album of current track & \"\\\",\"
     set state to state & \"\\\"artwork_url\\\":\" & \"\\\"\" & artwork url of current track & \"\\\",\"
     set state to state & \"\\\"track_url\\\":\" & \"\\\"\" & spotify url of current track & \"\\\",\"
-    set state to state & \"\\\"status\\\":\\\"success\\\" \"
+    set state to state & \"\\\"status\\\":\\\"running\\\"\"
     return state & \"}\"
   `
 };

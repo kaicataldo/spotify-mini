@@ -27,7 +27,7 @@ async function execCommand(cmd) {
     }
     response = await getState();
   } catch ({ message }) {
-    response = { status: 'error', message };
+    response = { player_state: 'error', message };
     console.error(`Error: ${message}`);
   }
   return response;
