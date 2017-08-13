@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import backSvg from "open-iconic/svg/chevron-left.svg";
 
 export default {

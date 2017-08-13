@@ -12,7 +12,7 @@ function ifRunning(str) {
   end tell`;
 }
 
-module.exports = {
+export default {
   togglePlay: ifRunning`tell application \"Spotify\" to playpause`,
   prev: ifRunning`tell application \"Spotify\" to previous track`,
   next: ifRunning`tell application \"Spotify\" to next track`,

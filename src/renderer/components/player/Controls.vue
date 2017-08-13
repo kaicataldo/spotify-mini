@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import playSvg from "open-iconic/svg/media-play.svg";
 import pauseSvg from "open-iconic/svg/media-pause.svg";
 import prevSvg from "open-iconic/svg/media-step-backward.svg";

@@ -1,8 +1,9 @@
-const path = require('path');
-const url = require('url');
-const electron = require('electron');
+import * as path from 'path';
+import * as url from 'url';
+import * as electron from 'electron';
+import spotify from './lib/spotify';
+
 const { app, BrowserWindow, Tray, globalShortcut, ipcMain } = electron;
-const spotify = require('./lib/spotify');
 
 // Keep a global reference to win/tray to prevent garbage collection from ending the process.
 let win;
@@ -56,7 +57,7 @@ app.on('ready', async () => {
 
   tray = new Tray(path.join(__dirname, '../assets/icon.png'));
   tray.setToolTip('Spotify Mini\nA macOS menubar controller for Spotify!');
-  tray.on('click', (event, bounds) => toggleWindow(bounds));
+  tray.on('click', (_event, bounds) => toggleWindow(bounds));
 
   globalShortcut.register('Command+Control+P', () => toggleWindow());
 });

@@ -3,7 +3,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   target: 'electron',
-  entry: './src/renderer/index.js',
+  entry: './src/renderer/index.ts',
   output: {
     filename: 'renderer/index.js',
     path: path.resolve(__dirname, 'dist'),
@@ -12,13 +12,18 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        include: [path.resolve(__dirname, 'src/renderer')]
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        options: {
+          appendTsSuffixTo: [/\.vue$/]
+        }
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
+        options: {
+          esModule: true
+        }
       },
       {
         test: /\.svg$/,
@@ -27,7 +32,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.vue'],
+    extensions: ['.js', '.ts', '.vue'],
     modules: [path.resolve(__dirname, 'src/renderer'), 'node_modules'],
     alias: {
       vue$: 'vue/dist/vue.esm.js'
@@ -36,7 +41,6 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([
       { from: 'src/assets', to: 'assets' },
-      { from: 'src/main', to: 'main' },
       { from: 'src/index.html' }
     ])
   ]

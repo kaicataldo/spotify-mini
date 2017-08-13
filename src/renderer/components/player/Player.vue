@@ -15,10 +15,10 @@
   </div>
 </template>
 
-<script>
-import Search from "./search";
-import NowPlaying from "./NowPlaying";
-import Controls from "./Controls";
+<script lang="ts">
+import Search from "./Search.vue";
+import NowPlaying from "./NowPlaying.vue";
+import Controls from "./Controls.vue";
 import cogSvg from "open-iconic/svg/cog.svg";
 
 export default {

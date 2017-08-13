@@ -1,8 +1,9 @@
-const { exec } = require('child_process');
-const commands = require('./commands');
+import * as childProcess from 'child_process';
+import commands from './commands';
+const { exec } = childProcess;
 
 function execAppleScript(cmd) {
-  return new Promise((resolve, reject) => {
+  return new Promise<string>((resolve, reject) => {
     exec(`osascript -e '${cmd}'`, (err, stdout) => {
       if (err) {
         reject(err);
@@ -32,7 +33,7 @@ async function execCommand(cmd) {
   return response;
 }
 
-module.exports = {
+export default {
   getState,
   execCommand
 };

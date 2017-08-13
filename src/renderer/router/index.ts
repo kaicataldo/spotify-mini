@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Player from '../components/player/Player';
-import Settings from '../components/settings/Settings';
+import Player from '../components/player/Player.vue';
+import Settings from '../components/settings/Settings.vue';
 
 Vue.use(Router);
 
