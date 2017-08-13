@@ -6,13 +6,15 @@
   </div>
 </template>
 
+
 <script lang="ts">
-export default {
-  name: "app",
-  computed: {
-    hasLoaded() {
-      return this.$store.state.hasLoaded;
-    }
+import Vue from 'vue'
+import Component from 'vue-class-component'
+
+@Component
+export default class App extends Vue {
+  get hasLoaded() {
+    return this.$store.state.hasLoaded;
   }
 }
 </script>

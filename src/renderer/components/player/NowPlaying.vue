@@ -8,23 +8,28 @@
 </template>
 
 <script lang="ts">
-export default {
-  name: "now-playing",
-  computed: {
-    artist() {
-      return this.$store.state.player.artist_name;
-    },
-    album() {
-      return this.$store.state.player.album_name;
-    },
-    track() {
-      return this.$store.state.player.track_name;
-    },
-    albumArtworkSrc() {
-      return this.$store.state.player.artwork_url;
-    }
+import Vue from 'vue'
+import Component from 'vue-class-component'
+
+
+@Component
+export default class NowPlaying extends Vue {
+  get artist() {
+    return this.$store.state.player.artist_name;
   }
-};
+
+  get album() {
+    return this.$store.state.player.album_name;
+  }
+
+  get track() {
+    return this.$store.state.player.track_name;
+  }
+
+  get albumArtworkSrc() {
+    return this.$store.state.player.artwork_url;
+  }
+}
 </script>
 
 <style scoped>

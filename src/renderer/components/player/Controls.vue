@@ -8,42 +8,47 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
+import Component from 'vue-class-component'
 import playSvg from "open-iconic/svg/media-play.svg";
 import pauseSvg from "open-iconic/svg/media-pause.svg";
 import prevSvg from "open-iconic/svg/media-step-backward.svg";
 import nextSvg from "open-iconic/svg/media-step-forward.svg";
 
-export default {
-  name: "controls",
-  computed: {
-    isPlaying() {
-      return this.$store.state.player.player_state === "playing";
-    },
-    playSvg() {
-      return playSvg;
-    },
-    pauseSvg() {
-      return pauseSvg;
-    },
-    prevSvg() {
-      return prevSvg;
-    },
-    nextSvg() {
-      return nextSvg;
-    }
-  },
-  methods: {
-    triggerPrev() {
-      this.$store.dispatch("prev");
-    },
-    triggerTogglePlay() {
-      this.$store.dispatch("togglePlay");
-    },
-    triggerNext() {
-      this.$store.dispatch("next");
-    }
+@Component
+export default class Controls extends Vue {
+  get isPlaying() {
+    return this.$store.state.player.player_state === "playing";
   }
-};
+
+  get playSvg() {
+    return playSvg;
+  }
+
+  get pauseSvg() {
+    return pauseSvg;
+  }
+
+  get prevSvg() {
+    return prevSvg;
+  }
+
+  get nextSvg() {
+    return nextSvg;
+  }
+
+  triggerPrev() {
+    this.$store.dispatch("prev");
+  }
+
+  triggerTogglePlay() {
+    this.$store.dispatch("togglePlay");
+  }
+
+  triggerNext() {
+    this.$store.dispatch("next");
+  }
+}
 </script>
 
 <style scoped>

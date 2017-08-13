@@ -7,16 +7,16 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
+import Component from 'vue-class-component'
 import backSvg from "open-iconic/svg/chevron-left.svg";
 
-export default {
-  name: "settings",
-  computed: {
-    backSvg() {
-      return backSvg;
-    }
+@Component
+export default class Settings extends Vue {
+  get backSvg() {
+    return backSvg;
   }
-};
+}
 </script>
 
 <style scoped>

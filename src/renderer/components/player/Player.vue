@@ -16,27 +16,29 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
+import Component from 'vue-class-component'
 import Search from "./Search.vue";
 import NowPlaying from "./NowPlaying.vue";
 import Controls from "./Controls.vue";
 import cogSvg from "open-iconic/svg/cog.svg";
 
-export default {
-  name: "player",
+@Component({
   components: {
     Search,
     NowPlaying,
     Controls
-  },
-  computed: {
-    status() {
-      return this.$store.state.player.status;
-    },
-    cogSvg() {
-      return cogSvg;
-    }
   }
-};
+})
+export default class Player extends Vue {
+  get status() {
+    return this.$store.state.player.status;
+  }
+
+  get cogSvg() {
+    return cogSvg;
+  }
+}
 </script>
 
 <style scoped>
