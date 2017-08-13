@@ -6,6 +6,7 @@
     "start": "npm run build -- -p && electron dist/main/index.js",
     "dev": "npm run build && (npm run watch:main & npm run watch:renderer & nodemon --watch dist/main --exec 'electron dist/main/index.js')",
     "lint": "npm run eslint && npm run stylelint",
+    "prettier": "prettier --single-quote --write '{,!(dist)/**/}*.{js,ts}'",
     "test": "npm run lint",
     "build": "rimraf dist && npm run build:main && npm run build:renderer",
     "build:main": "tsc -p src/main",
@@ -13,8 +14,7 @@
     "watch:main": "tsc -w -p src/main",
     "watch:renderer": "webpack --watch",
     "eslint": "eslint --ext .js,.ts,.vue .",
-    "stylelint": "stylelint 'src/**/*.vue'",
-    "prettier": "prettier --single-quote --write '{,!(dist)/**/}*.{js,ts}'"
+    "stylelint": "stylelint 'src/**/*.vue'"
   },
   "author": "Kai Cataldo <kaicataldo@gmail.com>",
   "license": "MIT",
@@ -35,7 +35,6 @@
     "stylelint-processor-html": "^1.0.0",
     "svg-inline-loader": "^0.8.0",
     "ts-loader": "^2.3.2",
-    "tslib": "^1.7.1",
     "typescript": "^2.4.2",
     "typescript-eslint-parser": "^5.0.1",
     "vue-loader": "^13.0.4",
@@ -45,6 +44,7 @@
   "dependencies": {
     "normalize.css": "^7.0.0",
     "open-iconic": "^1.1.1",
+    "tslib": "^1.7.1",
     "vue": "^2.4.2",
     "vue-router": "^2.7.0",
     "vuex": "^2.3.1"

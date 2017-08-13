@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
+    "importHelpers": true,
     "experimentalDecorators": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true
