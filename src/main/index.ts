@@ -11,7 +11,7 @@ let tray;
 
 app.on('ready', async () => {
   async function showWindow() {
-    win.webContents.send('setState', await spotify.getState());
+    win.webContents.send('playerStateUpdated', await spotify.getState());
     win.show();
   }
 

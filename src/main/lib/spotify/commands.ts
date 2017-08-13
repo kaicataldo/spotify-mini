@@ -4,7 +4,7 @@
 
 function checkStatus(str) {
   return `tell application "System Events"
-    if get name of every application process contains "Spotify" then
+    if ((get name of every application process) contains "Spotify") then
       tell application \"Spotify\"
         if ((player state as string) is equal to "stopped") then
           return \"{\\\"status\\\":\\\"stopped\\\"}\"
