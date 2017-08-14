@@ -8,8 +8,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Component from 'vue-class-component'
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import playSvg from "open-iconic/svg/media-play.svg";
 import pauseSvg from "open-iconic/svg/media-pause.svg";
 import prevSvg from "open-iconic/svg/media-step-backward.svg";

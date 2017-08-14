@@ -16,8 +16,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Component from 'vue-class-component'
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import Search from "./Search.vue";
 import NowPlaying from "./NowPlaying.vue";
 import Controls from "./Controls.vue";
