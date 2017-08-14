@@ -1,9 +1,11 @@
+import { AppState, PlayerState } from './state';
+
 export default {
-  setPlayerState(state, payload) {
+  setPlayerState(state: AppState, payload: PlayerState) {
     state.player = payload;
   },
 
-  setLoaded(state) {
+  setLoaded(state: AppState) {
     state.hasLoaded = true;
   }
 };

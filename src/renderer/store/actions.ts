@@ -1,3 +1,5 @@
+import { Commit } from 'vuex';
+import { AppState, PlayerState } from './state';
 import * as electron from 'electron';
 
 const { ipcRenderer } = electron;
@@ -19,7 +21,10 @@ export default {
     ipcRenderer.send('command', 'getState');
   },
 
-  setPlayerState({ state, commit }, payload) {
+  setPlayerState(
+    { state, commit }: { state: AppState; commit: Commit },
+    payload: PlayerState
+  ) {
     if (!state.hasLoaded) {
       commit('setLoaded');
     }

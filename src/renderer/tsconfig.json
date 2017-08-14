@@ -8,5 +8,9 @@
     "target": "es5",
     "module": "es2015",
     "allowSyntheticDefaultImports": true
-   }
+   },
+   "include": [
+     "types/**/*",
+     "../types/**/*"
+   ]
 }

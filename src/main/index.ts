@@ -6,32 +6,32 @@ import spotify from './lib/spotify';
 const { app, BrowserWindow, Tray, globalShortcut, ipcMain } = electron;
 
 // Keep a global reference to win/tray to prevent garbage collection from ending the process.
-let win;
-let tray;
+let win: Electron.BrowserWindow;
+let tray: Electron.Tray;
+
+async function showWindow(): Promise<void> {
+  win.webContents.send('playerStateUpdated', await spotify.getState());
+  win.show();
+}
+
+function toggleWindow(
+  { x: trayX, y: trayY, width: trayWidth } = tray.getBounds()
+): void {
+  if (win.isVisible()) {
+    win.hide();
+  } else {
+    const trayWidthOffset = trayWidth / 2;
+    const [winWidth] = win.getSize();
+    const winWidthOffset = winWidth / 2;
+
+    // x must be an integer
+    const winX = Math.round(trayX + trayWidthOffset - winWidthOffset);
+    win.setPosition(winX, trayY);
+    showWindow();
+  }
+}
 
 app.on('ready', async () => {
-  async function showWindow() {
-    win.webContents.send('playerStateUpdated', await spotify.getState());
-    win.show();
-  }
-
-  function toggleWindow(
-    { x: trayX, y: trayY, width: trayWidth } = tray.getBounds()
-  ) {
-    if (win.isVisible()) {
-      win.hide();
-    } else {
-      const trayWidthOffset = trayWidth / 2;
-      const [winWidth] = win.getSize();
-      const winWidthOffset = winWidth / 2;
-
-      // x must be an integer
-      const winX = Math.round(trayX + trayWidthOffset - winWidthOffset);
-      win.setPosition(winX, trayY);
-      showWindow();
-    }
-  }
-
   win = new BrowserWindow({
     width: 320,
     height: 600,
@@ -47,8 +47,7 @@ app.on('ready', async () => {
   );
   win
     .on('closed', () => {
-      win = null;
-      tray = null;
+      app.quit();
     })
     .on('blur', () => win.hide())
     .on('focus', showWindow);
@@ -64,6 +63,6 @@ app.on('ready', async () => {
 
 app.dock.hide();
 
-ipcMain.on('command', async (event, command) =>
+ipcMain.on('command', async (event: Electron.Event, command: string) =>
   event.sender.send('playerStateUpdated', await spotify.execCommand(command))
 );

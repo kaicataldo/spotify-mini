@@ -2,14 +2,14 @@
 // prettier-ignore
 // https://developer.apple.com/library/content/documentation/AppleScript/Conceptual/AppleScriptLangGuide/reference/ASLR_classes.html#//apple_ref/doc/uid/TP40000983-CH1g-DontLinkElementID_57
 
-function checkStatus(str) {
+function checkStatus(cmd: string): string {
   return `tell application "System Events"
     if ((get name of every application process) contains "Spotify") then
       tell application \"Spotify\"
         if ((player state as string) is equal to "stopped") then
           return \"{\\\"player_state\\\":\\\"stopped\\\",\\\"status\\\":\\\"running\\\"}\"
         else
-          ${str}
+          ${cmd}
         end if
       end tell
     else
@@ -18,11 +18,13 @@ function checkStatus(str) {
   end tell`;
 }
 
-export default {
-  togglePlay: checkStatus`playpause`,
-  prev: checkStatus`previous track`,
-  next: checkStatus`next track`,
-  playerState: checkStatus`
+const commands: {
+  [key: string]: string;
+} = {
+  togglePlay: checkStatus('playpause'),
+  prev: checkStatus('previous track'),
+  next: checkStatus('next track'),
+  playerState: checkStatus(`
     set state to \"{\"
     set state to state & \"\\\"player_state\\\":\" & \"\\\"\" & player state & \"\\\",\"
     set state to state & \"\\\"track_name\\\":\" & \"\\\"\" & name of current track & \"\\\",\"
@@ -33,5 +35,7 @@ export default {
     set state to state & \"\\\"track_url\\\":\" & \"\\\"\" & spotify url of current track & \"\\\",\"
     set state to state & \"\\\"status\\\":\\\"running\\\"\"
     return state & \"}\"
-  `
+  `)
 };
+
+export default commands;
