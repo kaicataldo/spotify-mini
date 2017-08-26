@@ -13,17 +13,31 @@ export default class Store {
   constructor() {
     this._configFilePath = path.join(
       app.getPath('appData'),
-      'SpotifyMini/config.json'
+      'SpotifyMini/settings.json'
     );
-    this._ensureConfigExists();
-    this._data = this._readConfig();
+    this._data = this._getConfig();
   }
 
-  private _readConfig(): {} {
-    return JSON.parse(fs.readFileSync(this._configFilePath, 'utf8'));
+  private _getConfig(): {} {
+    let data;
+    try {
+      data = JSON.parse(this._readConfig());
+    } catch (e) {
+      // In the case of the config file being corrupted/not valid JSON, regenerate it
+      if (fs.existsSync(this._configFilePath)) {
+        fs.unlinkSync(this._configFilePath);
+      }
+      this._generateConfigFile();
+      data = JSON.parse(this._readConfig());
+    }
+    return data;
   }
 
-  private _ensureConfigExists(): void {
+  private _readConfig(): string {
+    return fs.readFileSync(this._configFilePath, 'utf8');
+  }
+
+  private _generateConfigFile(): void {
     const dirname = path.dirname(this._configFilePath);
     if (!fs.existsSync(dirname)) {
       fs.mkdirSync(dirname);
