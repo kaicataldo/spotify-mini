@@ -1,4 +1,5 @@
 import { PlayerState } from '../../types/PlayerState';
+import { UserSettings } from '../../types/UserSettings';
 
 const player: PlayerState = {
   player_state: '',
@@ -15,11 +16,18 @@ const player: PlayerState = {
 export interface AppState {
   hasLoaded: boolean;
   player: PlayerState;
+  searchResults: Array<any>;
+  settings: UserSettings;
 }
 
 export { PlayerState } from '../../types/PlayerState';
 
 export default {
   hasLoaded: false,
-  player: player
+  player: player,
+  searchResults: [],
+  settings: {
+    clientId: '',
+    clientSecret: ''
+  }
 };

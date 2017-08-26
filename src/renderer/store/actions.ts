@@ -1,10 +1,18 @@
-import { Commit } from 'vuex';
+import { Commit, ActionContext } from 'vuex';
 import { AppState, PlayerState } from './state';
 import * as electron from 'electron';
 
 const { ipcRenderer } = electron;
 
 export default {
+  search(_context: ActionContext<AppState, AppState>, params: string) {
+    ipcRenderer.send('search', params);
+  },
+
+  updateSettings({ state }: { state: AppState }) {
+    ipcRenderer.send('updateSettings', state.settings);
+  },
+
   prev() {
     ipcRenderer.send('command', 'prev');
   },
@@ -18,7 +26,7 @@ export default {
   },
 
   getPlayerState() {
-    ipcRenderer.send('command', 'getState');
+    ipcRenderer.send('getState');
   },
 
   setPlayerState(

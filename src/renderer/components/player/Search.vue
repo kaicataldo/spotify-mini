@@ -1,6 +1,6 @@
 <template>
   <div class="searchbar">
-    <input type="text"></input>
+    <input type="text" placeholder="Search" v-model="searchParams" @keyup.enter="search"></input>
   </div>
 </template>
 
@@ -9,7 +9,13 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 
 @Component
-export default class Search extends Vue {}
+export default class Search extends Vue {
+  searchParams: string = '';
+
+  search() {
+    this.$store.dispatch('search', this.searchParams)
+  }
+}
 </script>
 
 <style scoped>

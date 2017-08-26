@@ -2,14 +2,17 @@ import * as path from 'path';
 import * as url from 'url';
 import * as electron from 'electron';
 import spotify from './lib/spotify';
+import Store from './lib/Store';
 
 const { app, BrowserWindow, Tray, globalShortcut, ipcMain } = electron;
 
 // Keep a global reference to win/tray to prevent garbage collection from ending the process.
 let win: Electron.BrowserWindow;
 let tray: Electron.Tray;
+let store: Store;
 
 async function showWindow(): Promise<void> {
+  win.webContents.send('settingsUpdated', store.get());
   win.webContents.send('playerStateUpdated', await spotify.getState());
   win.show();
 }
@@ -32,6 +35,7 @@ function toggleWindow(
 }
 
 app.on('ready', async () => {
+  store = new Store();
   win = new BrowserWindow({
     width: 320,
     height: 600,
@@ -63,6 +67,32 @@ app.on('ready', async () => {
 
 app.dock.hide();
 
-ipcMain.on('command', async (event: Electron.Event, command: string) =>
-  event.sender.send('playerStateUpdated', await spotify.execCommand(command))
+ipcMain.on('getState', async (event: Electron.Event) => {
+  event.sender.send('settingsUpdated', store.get());
+  event.sender.send(
+    'playerStateUpdated',
+    await spotify.execCommand('getState')
+  );
+});
+
+ipcMain.on('command', async (event: Electron.Event, command: string) => {
+  event.sender.send('playerStateUpdated', await spotify.execCommand(command));
+});
+
+ipcMain.on('search', async (event: Electron.Event, params: string) =>
+  event.sender.send(
+    'searchResultsUpdated',
+    await spotify.search(params, store.get())
+  )
+);
+
+ipcMain.on(
+  'updateSettings',
+  (
+    event: Electron.Event,
+    settings: { clientId: string; clientSecret: string }
+  ) => {
+    store.set(settings);
+    event.sender.send('settingsUpdated', store.get());
+  }
 );

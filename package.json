@@ -20,6 +20,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^8.0.20",
+    "@types/request-promise-native": "^1.0.6",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.4",
     "electron": "^1.7.6",
@@ -44,6 +45,8 @@
   "dependencies": {
     "normalize.css": "^7.0.0",
     "open-iconic": "^1.1.1",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.4",
     "tslib": "^1.7.1",
     "vue": "^2.4.2",
     "vue-class-component": "^5.0.2",
