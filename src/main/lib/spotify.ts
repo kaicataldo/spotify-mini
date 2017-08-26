@@ -1,8 +1,8 @@
 import * as childProcess from 'child_process';
 import * as request from 'request-promise-native';
-import { PlayerState } from '../../../types/PlayerState';
-import { UserSettings } from '../../../types/UserSettings';
-import commands from './commands';
+import { PlayerState } from '../../types/PlayerState';
+import { UserSettings } from '../../types/UserSettings';
+import commands from './appleScriptCommands';
 
 const { exec } = childProcess;
 
