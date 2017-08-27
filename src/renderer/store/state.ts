@@ -1,18 +1,5 @@
 import { PlayerState } from '../../types/PlayerState';
-import { UserSettings } from '../../types/UserSettings';
-
-export interface SearchResults {
-  album: {};
-  artist: {};
-  track: {};
-}
-
-export interface AppState {
-  hasLoaded: boolean;
-  player: PlayerState;
-  searchResults: SearchResults;
-  settings: UserSettings;
-}
+import { SearchResults } from '../../types/SearchResults';
 
 const player: PlayerState = {
   player_state: '',
@@ -31,8 +18,6 @@ const searchResults: SearchResults = {
   artist: {},
   track: {}
 };
-
-export { PlayerState } from '../../types/PlayerState';
 
 export default {
   hasLoaded: false,

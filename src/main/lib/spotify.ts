@@ -1,8 +1,10 @@
 import * as childProcess from 'child_process';
 import * as request from 'request-promise-native';
+import commands from './appleScriptCommands';
+
 import { PlayerState } from '../../types/PlayerState';
 import { UserSettings } from '../../types/UserSettings';
-import commands from './appleScriptCommands';
+import { SearchResults } from '../../types/SearchResults';
 
 const { exec } = childProcess;
 
@@ -46,7 +48,7 @@ async function requestAccessToken({
 }: {
   clientId: string;
   clientSecret: string;
-}) {
+}): Promise<string> {
   const { access_token } = JSON.parse(
     await request({
       method: 'POST',
@@ -64,7 +66,7 @@ async function requestAccessToken({
   return access_token;
 }
 
-async function requestSearchResults(params: string, accessToken: string) {
+async function requestSearchResults(params: string, accessToken: string): Promise<SearchResults> {
   return JSON.parse(
     await request({
       method: 'GET',

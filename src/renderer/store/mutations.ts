@@ -1,4 +1,6 @@
-import { AppState, PlayerState, SearchResults } from './state';
+import { AppState } from '../../types/AppState';
+import { PlayerState } from '../../types/PlayerState';
+import { SearchResults } from '../../types/SearchResults';
 import { UserSettings } from '../../types/UserSettings';
 
 export default {
