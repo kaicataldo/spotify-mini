@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as url from 'url';
 import * as electron from 'electron';
 import spotify from './lib/spotify';
-import Store from './lib/Store';
+import Store from './lib/store';
 
 const { app, BrowserWindow, Tray, globalShortcut, ipcMain } = electron;
 
