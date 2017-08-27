@@ -29,14 +29,14 @@ export default class Settings extends Vue {
   }
 
   updateClientId(event: Event): void {
-    this.$store.commit('setClientId', (<HTMLTextAreaElement>event.currentTarget).value);
+    this.$store.commit('setClientId', (event.currentTarget as HTMLTextAreaElement).value);
   }
 
   updateClientSecret(event: Event): void {
-    this.$store.commit('setClientSecret', (<HTMLTextAreaElement>event.currentTarget).value);
+    this.$store.commit('setClientSecret', (event.currentTarget as HTMLTextAreaElement).value);
   }
 
-  saveSettings(): void {
+  saveSettings() {
     this.$store.dispatch('updateSettings');
   }
 }
