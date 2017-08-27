@@ -12,12 +12,7 @@ const player: PlayerState = {
   message: ''
 };
 
-const searchResults: SearchResults = {
-  status: '',
-  album: {},
-  artist: {},
-  track: {}
-};
+const searchResults: SearchResults | null = null;
 
 export default {
   hasLoaded: false,

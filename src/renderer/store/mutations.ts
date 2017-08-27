@@ -26,6 +26,10 @@ export default {
     state.searchResults = payload;
   },
 
+  clearSearchResults(state: AppState): void {
+    state.searchResults = null;
+  },
+
   setSettings(state: AppState, payload: UserSettings): void {
     state.settings = payload;
   }

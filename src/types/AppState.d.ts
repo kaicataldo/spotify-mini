@@ -1,10 +1,8 @@
-import { PlayerState } from './PlayerState';
-import { SearchResults } from './SearchResults';
-import { UserSettings } from './UserSettings';
+import { PlayerState, SearchResults, UserSettings } from '.';
 
 export interface AppState {
   hasLoaded: boolean;
   player: PlayerState;
-  searchResults: SearchResults;
+  searchResults: SearchResults | null;
   settings: UserSettings;
 }

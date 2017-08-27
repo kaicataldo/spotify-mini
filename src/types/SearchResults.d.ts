@@ -1,5 +1,5 @@
 export interface SearchResults {
-  status: 'success' | 'error' | '';
+  status?: 'success' | 'error';
   album?: {};
   artist?: {};
   track?: {};
