@@ -6,6 +6,9 @@ import commands from './appleScriptCommands';
 
 const { exec } = childProcess;
 
+const TOKEN_URI = 'https://accounts.spotify.com/api/token';
+const SEARCH_URI = 'https://api.spotify.com/v1/search';
+
 function execAppleScript(cmd: string): Promise<string> {
   return new Promise((resolve, reject) => {
     exec(`osascript -e '${cmd}'`, (err, stdout) => {
@@ -37,37 +40,52 @@ async function execCommand(cmd: string): Promise<PlayerState> {
   return response;
 }
 
-async function search(params: string, credentials: UserSettings): Promise<{}> {
-  const { clientId, clientSecret } = credentials;
-  let response;
+async function requestAccessToken({
+  clientId,
+  clientSecret
+}: {
+  clientId: string;
+  clientSecret: string;
+}) {
+  const { access_token } = JSON.parse(
+    await request({
+      method: 'POST',
+      uri: TOKEN_URI,
+      form: {
+        grant_type: 'client_credentials'
+      },
+      headers: {
+        Authorization: `Basic ${Buffer.from(
+          `${clientId}:${clientSecret}`
+        ).toString('base64')}`
+      }
+    })
+  );
+  return access_token;
+}
 
-  try {
-    const { access_token } = JSON.parse(
-      await request({
-        method: 'POST',
-        uri: 'https://accounts.spotify.com/api/token',
-        form: {
-          grant_type: 'client_credentials'
-        },
-        headers: {
-          Authorization: `Basic ${Buffer.from(
-            `${clientId}:${clientSecret}`
-          ).toString('base64')}`
-        }
-      })
-    );
-    const searchResults = await request({
+async function requestSearchResults(params: string, accessToken: string) {
+  return JSON.parse(
+    await request({
       method: 'GET',
-      uri: 'https://api.spotify.com/v1/search',
+      uri: SEARCH_URI,
       qs: {
         q: params,
         type: 'album,artist,track'
       },
       headers: {
-        Authorization: `Bearer ${access_token}`
+        Authorization: `Bearer ${accessToken}`
       }
-    });
-    response = { search_results: JSON.parse(searchResults) };
+    })
+  );
+}
+
+async function search(params: string, credentials: UserSettings): Promise<{}> {
+  let response;
+  try {
+    const accessToken = await requestAccessToken(credentials);
+    const searchResults = await requestSearchResults(params, accessToken);
+    response = { ...searchResults };
   } catch ({ message }) {
     response = { status: 'error', message };
     console.error(`Error: ${message}`);

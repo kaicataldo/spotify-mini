@@ -1,8 +1,5 @@
 import * as path from 'path';
 import * as fs from 'fs';
-import * as electron from 'electron';
-
-const { app } = electron;
 
 export default class Store {
   _configFilePath: string;
@@ -10,11 +7,8 @@ export default class Store {
     [index: string]: any;
   };
 
-  constructor() {
-    this._configFilePath = path.join(
-      app.getPath('appData'),
-      'SpotifyMini/settings.json'
-    );
+  constructor(configPath: string) {
+    this._configFilePath = configPath;
     this._data = this._getConfig();
   }
 

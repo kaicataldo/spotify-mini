@@ -1,6 +1,19 @@
 import { PlayerState } from '../../types/PlayerState';
 import { UserSettings } from '../../types/UserSettings';
 
+export interface SearchResults {
+  album: {};
+  artist: {};
+  track: {};
+}
+
+export interface AppState {
+  hasLoaded: boolean;
+  player: PlayerState;
+  searchResults: SearchResults;
+  settings: UserSettings;
+}
+
 const player: PlayerState = {
   player_state: '',
   track_name: '',
@@ -13,19 +26,18 @@ const player: PlayerState = {
   message: ''
 };
 
-export interface AppState {
-  hasLoaded: boolean;
-  player: PlayerState;
-  searchResults: Array<any>;
-  settings: UserSettings;
-}
+const searchResults: SearchResults = {
+  album: {},
+  artist: {},
+  track: {}
+};
 
 export { PlayerState } from '../../types/PlayerState';
 
 export default {
   hasLoaded: false,
-  player: player,
-  searchResults: [],
+  player,
+  searchResults,
   settings: {
     clientId: '',
     clientSecret: ''

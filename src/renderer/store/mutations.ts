@@ -1,4 +1,4 @@
-import { AppState, PlayerState } from './state';
+import { AppState, PlayerState, SearchResults } from './state';
 import { UserSettings } from '../../types/UserSettings';
 
 export default {
@@ -18,7 +18,7 @@ export default {
     state.hasLoaded = true;
   },
 
-  setSearchResults(state: AppState, payload: Array<any>): void {
+  setSearchResults(state: AppState, payload: SearchResults): void {
     state.searchResults = payload;
   },
 
