@@ -17,35 +17,35 @@ import nextSvg from "open-iconic/svg/media-step-forward.svg";
 
 @Component
 export default class Controls extends Vue {
-  get isPlaying() {
+  get isPlaying(): boolean {
     return this.$store.state.player.player_state === "playing";
   }
 
-  get playSvg() {
+  get playSvg(): string {
     return playSvg;
   }
 
-  get pauseSvg() {
+  get pauseSvg(): string {
     return pauseSvg;
   }
 
-  get prevSvg() {
+  get prevSvg(): string {
     return prevSvg;
   }
 
-  get nextSvg() {
+  get nextSvg(): string {
     return nextSvg;
   }
 
-  triggerPrev() {
+  triggerPrev(): void {
     this.$store.dispatch("prev");
   }
 
-  triggerTogglePlay() {
+  triggerTogglePlay(): void {
     this.$store.dispatch("togglePlay");
   }
 
-  triggerNext() {
+  triggerNext(): void {
     this.$store.dispatch("next");
   }
 }

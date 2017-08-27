@@ -31,11 +31,11 @@ import cogSvg from "open-iconic/svg/cog.svg";
   }
 })
 export default class Player extends Vue {
-  get status() {
+  get status(): string {
     return this.$store.state.player.status;
   }
 
-  get cogSvg() {
+  get cogSvg(): string {
     return cogSvg;
   }
 }

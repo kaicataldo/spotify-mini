@@ -12,7 +12,7 @@ import Component from 'vue-class-component';
 export default class Search extends Vue {
   searchParams: string = '';
 
-  search() {
+  search(): void {
     this.$store.dispatch('search', this.searchParams)
   }
 }

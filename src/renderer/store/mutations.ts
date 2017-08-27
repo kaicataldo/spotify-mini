@@ -1,4 +1,9 @@
-import { AppState, PlayerState, SearchResults, UserSettings } from '../../types';
+import {
+  AppState,
+  PlayerState,
+  SearchResults,
+  UserSettings
+} from '../../types';
 
 export default {
   setPlayerState(state: AppState, payload: PlayerState): void {

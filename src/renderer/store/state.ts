@@ -13,6 +13,7 @@ const player: PlayerState = {
 };
 
 const searchResults: SearchResults = {
+  status: '',
   album: {},
   artist: {},
   track: {}

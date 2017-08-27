@@ -13,7 +13,7 @@ import Component from 'vue-class-component'
 
 @Component
 export default class App extends Vue {
-  get hasLoaded() {
+  get hasLoaded(): boolean {
     return this.$store.state.hasLoaded;
   }
 }

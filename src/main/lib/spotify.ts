@@ -63,7 +63,10 @@ async function requestAccessToken({
   return access_token;
 }
 
-async function requestSearchResults(params: string, accessToken: string): Promise<SearchResults> {
+async function requestSearchResults(
+  params: string,
+  accessToken: string
+): Promise<SearchResults> {
   return JSON.parse(
     await request({
       method: 'GET',
@@ -79,12 +82,15 @@ async function requestSearchResults(params: string, accessToken: string): Promis
   );
 }
 
-async function search(params: string, credentials: UserSettings): Promise<{}> {
-  let response;
+async function search(
+  params: string,
+  credentials: UserSettings
+): Promise<SearchResults> {
+  let response: SearchResults;
   try {
     const accessToken = await requestAccessToken(credentials);
     const searchResults = await requestSearchResults(params, accessToken);
-    response = { ...searchResults };
+    response = { ...searchResults, status: 'success' };
   } catch ({ message }) {
     response = { status: 'error', message };
     console.error(`Error: ${message}`);

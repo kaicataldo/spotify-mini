@@ -16,27 +16,27 @@ import backSvg from "open-iconic/svg/chevron-left.svg";
 
 @Component
 export default class Settings extends Vue {
-  get clientId() {
+  get clientId(): string {
     return this.$store.state.settings.clientId;
   }
 
-  get clientSecret() {
+  get clientSecret(): string {
     return this.$store.state.settings.clientSecret;
   }
 
-  get backSvg() {
+  get backSvg(): string {
     return backSvg;
   }
 
-  updateClientId(event: Event) {
+  updateClientId(event: Event): void {
     this.$store.commit('setClientId', (<HTMLTextAreaElement>event.currentTarget).value);
   }
 
-  updateClientSecret(event: Event) {
+  updateClientSecret(event: Event): void {
     this.$store.commit('setClientSecret', (<HTMLTextAreaElement>event.currentTarget).value);
   }
 
-  saveSettings() {
+  saveSettings(): void {
     this.$store.dispatch('updateSettings');
   }
 }

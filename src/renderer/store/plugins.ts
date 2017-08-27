@@ -4,8 +4,8 @@ import { UserSettings, AppState, PlayerState } from '../../types';
 
 const { ipcRenderer } = electron;
 
-export default {
-  setState(store: Store<AppState>) {
+export default [
+  function syncFromMain(store: Store<AppState>): void {
     ipcRenderer.on(
       'playerStateUpdated',
       (_event: Electron.Event, payload: PlayerState) =>
@@ -24,4 +24,4 @@ export default {
         store.commit('setSettings', payload)
     );
   }
-};
+];

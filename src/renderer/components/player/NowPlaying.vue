@@ -14,19 +14,19 @@ import Component from 'vue-class-component';
 
 @Component
 export default class NowPlaying extends Vue {
-  get artist() {
+  get artist(): string {
     return this.$store.state.player.artist_name;
   }
 
-  get album() {
+  get album(): string {
     return this.$store.state.player.album_name;
   }
 
-  get track() {
+  get track(): string {
     return this.$store.state.player.track_name;
   }
 
-  get albumArtworkSrc() {
+  get albumArtworkSrc(): string {
     return this.$store.state.player.artwork_url;
   }
 }
