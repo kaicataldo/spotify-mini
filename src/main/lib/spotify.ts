@@ -1,10 +1,7 @@
 import * as childProcess from 'child_process';
 import * as request from 'request-promise-native';
 import commands from './appleScriptCommands';
-
-import { PlayerState } from '../../types/PlayerState';
-import { UserSettings } from '../../types/UserSettings';
-import { SearchResults } from '../../types/SearchResults';
+import { PlayerState, UserSettings, SearchResults } from '../../types';
 
 const { exec } = childProcess;
 

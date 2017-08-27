@@ -1,5 +1,4 @@
-import { PlayerState } from '../../types/PlayerState';
-import { SearchResults } from '../../types/SearchResults';
+import { PlayerState, SearchResults } from '../../types';
 
 const player: PlayerState = {
   player_state: '',

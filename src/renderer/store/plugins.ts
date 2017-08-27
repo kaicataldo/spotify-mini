@@ -1,9 +1,6 @@
 import * as electron from 'electron';
 import { Store } from 'vuex';
-
-import { UserSettings } from '../../types/UserSettings';
-import { AppState } from '../../types/AppState';
-import { PlayerState } from '../../types/PlayerState';
+import { UserSettings, AppState, PlayerState } from '../../types';
 
 const { ipcRenderer } = electron;
 

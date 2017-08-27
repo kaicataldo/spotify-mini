@@ -5,7 +5,7 @@ import actions from './actions';
 import mutations from './mutations';
 import plugins from './plugins';
 
-import { AppState } from '../../types/AppState';
+import { AppState } from '../../types';
 
 Vue.use(Vuex);
 

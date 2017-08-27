@@ -1,8 +1,6 @@
-import { Commit, ActionContext } from 'vuex';
 import * as electron from 'electron';
-
-import { AppState } from '../../types/AppState';
-import { PlayerState } from '../../types/PlayerState';
+import { Commit, ActionContext } from 'vuex';
+import { AppState, PlayerState } from '../../types';
 
 const { ipcRenderer } = electron;
 
