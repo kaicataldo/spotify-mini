@@ -12,19 +12,20 @@ import SearchResultsList from './SearchResultsList.vue'
 import { SearchResults } from '../../../types';
 
 @Component({
+  props: {
+    searchResults: {}
+  },
   components: {
     SearchResultsList
   }
 })
 export default class Search extends Vue {
+  searchresults: SearchResults;
+
   searchParams: string = '';
 
   get hasSearchResults(): boolean {
-    return !!this.$store.state.searchResults;
-  }
-
-  get searchResults(): SearchResults {
-    return this.$store.state.searchResults;
+    return !!this.$props.searchResults;
   }
 
   search(): void {

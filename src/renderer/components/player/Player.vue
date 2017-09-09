@@ -1,13 +1,13 @@
 <template>
-  <div v-if="status === 'running'" class="player">
-    <search></search>
-    <now-playing></now-playing>
-    <controls></controls>
+  <div v-if="playerState.status === 'running'" class="player">
+    <search :searchResults="searchResults"></search>
+    <now-playing :playerState="playerState"></now-playing>
+    <controls :isPlaying="isPlaying"></controls>
     <router-link to="/settings">
       <span v-once v-html="cogSvg" class="icon"></span>
     </router-link>
   </div>
-  <div v-else-if="status === 'not_running'">
+  <div v-else-if="playerState.status === 'not_running'">
     <h1>Spotify isn't running! Start Spotify and try again.</h1>
   </div>
   <div v-else>
@@ -22,6 +22,7 @@ import Search from "./Search.vue";
 import NowPlaying from "./NowPlaying.vue";
 import Controls from "./Controls.vue";
 import cogSvg from "open-iconic/svg/cog.svg";
+import { SearchResults, PlayerState } from '../../../types';
 
 @Component({
   components: {
@@ -31,8 +32,16 @@ import cogSvg from "open-iconic/svg/cog.svg";
   }
 })
 export default class Player extends Vue {
-  get status(): string {
-    return this.$store.state.player.status;
+  get playerState(): PlayerState {
+    return this.$store.state.player;
+  }
+
+  get searchResults(): SearchResults {
+    return this.$store.state.searchResults;
+  }
+
+  get isPlaying(): boolean {
+    return this.$store.getters.isPlaying;
   }
 
   get cogSvg(): string {

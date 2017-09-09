@@ -15,11 +15,13 @@ import pauseSvg from "open-iconic/svg/media-pause.svg";
 import prevSvg from "open-iconic/svg/media-step-backward.svg";
 import nextSvg from "open-iconic/svg/media-step-forward.svg";
 
-@Component
-export default class Controls extends Vue {
-  get isPlaying(): boolean {
-    return this.$store.state.player.player_state === "playing";
+@Component({
+  props: {
+    isPlaying: Boolean
   }
+})
+export default class Controls extends Vue {
+  isPlaying: boolean;
 
   get playSvg(): string {
     return playSvg;

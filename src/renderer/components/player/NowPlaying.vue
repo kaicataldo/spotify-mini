@@ -1,34 +1,24 @@
 <template>
   <div>
-    <img class="album-artwork" :src="albumArtworkSrc" />
-    <p>Artist: {{ artist }}</p>
-    <p>Album: {{ album }}</p>
-    <p>Track: {{ track }}</p>
+    <img class="album-artwork" :src="playerState.artwork_url" />
+    <p>Artist: {{ playerState.artist_name }}</p>
+    <p>Album: {{ playerState.album_name }}</p>
+    <p>Track: {{ playerState.track_name }}</p>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import { PlayerState } from '../../../types';
 
-
-@Component
+@Component({
+  props: {
+    playerState: {}
+  }
+})
 export default class NowPlaying extends Vue {
-  get artist(): string {
-    return this.$store.state.player.artist_name;
-  }
-
-  get album(): string {
-    return this.$store.state.player.album_name;
-  }
-
-  get track(): string {
-    return this.$store.state.player.track_name;
-  }
-
-  get albumArtworkSrc(): string {
-    return this.$store.state.player.artwork_url;
-  }
+  playerState: PlayerState;
 }
 </script>
 

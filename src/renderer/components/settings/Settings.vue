@@ -3,8 +3,8 @@
     <router-link to="/">
       <span v-once v-html="backSvg" class="icon"></span>
     </router-link>
-    <input type="text" placeholder="client id" :value="clientId" @input="updateClientId"></input>
-    <input type="text" placeholder="client secret" :value="clientSecret" @input="updateClientSecret"></input>
+    <input type="text" placeholder="client id" :value="settingsState.clientId" @input="updateClientId"></input>
+    <input type="text" placeholder="client secret" :value="settingsState.clientSecret" @input="updateClientSecret"></input>
     <button @click="saveSettings">Save</button>
   </div>
 </template>
@@ -13,15 +13,12 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import backSvg from "open-iconic/svg/chevron-left.svg";
+import { UserSettings } from '../../../types';
 
 @Component
 export default class Settings extends Vue {
-  get clientId(): string {
-    return this.$store.state.settings.clientId;
-  }
-
-  get clientSecret(): string {
-    return this.$store.state.settings.clientSecret;
+  get settingsState(): UserSettings {
+    return this.$store.state.settings;
   }
 
   get backSvg(): string {
