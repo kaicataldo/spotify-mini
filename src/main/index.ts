@@ -49,7 +49,10 @@ app.on('ready', async () => {
       slashes: true
     })
   );
-  win.on('closed', app.quit).on('blur', win.hide).on('focus', showWindow);
+  win
+    .on('closed', app.quit)
+    .on('blur', win.hide)
+    .on('focus', showWindow);
   win.setAlwaysOnTop(true);
   win.hide();
 

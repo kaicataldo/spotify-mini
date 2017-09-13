@@ -2,6 +2,8 @@
   "name": "spotify-mini",
   "version": "1.0.0",
   "description": "A macOS menubar controller for Spotify!",
+  "author": "Kai Cataldo <kaicataldo@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "start": "npm run build -- -p && electron dist/main/index.js",
     "dev": "npm run build && (npm run watch:main & npm run watch:renderer & nodemon --watch dist/main --exec 'electron dist/main/index.js')",
@@ -14,10 +16,15 @@
     "watch:main": "tsc -w -p src/main",
     "watch:renderer": "webpack --watch",
     "eslint": "eslint --ext .js,.ts,.vue .",
-    "stylelint": "stylelint 'src/**/*.vue'"
+    "stylelint": "stylelint 'src/**/*.vue'",
+    "precommit": "lint-staged"
   },
-  "author": "Kai Cataldo <kaicataldo@gmail.com>",
-  "license": "MIT",
+  "lint-staged": {
+    "*.{js,ts}": [
+      "prettier",
+      "git add"
+    ]
+  },
   "devDependencies": {
     "@types/node": "^8.0.25",
     "@types/request-promise-native": "^1.0.6",
@@ -26,6 +33,8 @@
     "electron": "^1.7.6",
     "eslint": "^4.5.0",
     "eslint-plugin-vue": "^3.12.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.1.3",
     "nodemon": "^1.11.0",
     "postcss-scss": "^1.0.2",
     "precss": "^2.0.0",
