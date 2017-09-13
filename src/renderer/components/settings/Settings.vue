@@ -33,7 +33,7 @@ export default class Settings extends Vue {
     this.$store.commit('setClientSecret', (event.currentTarget as HTMLTextAreaElement).value);
   }
 
-  saveSettings() {
+  saveSettings(): void {
     this.$store.dispatch('updateSettings');
   }
 }
