@@ -1,19 +1,19 @@
-import * as path from 'path';
-import * as url from 'url';
-import * as electron from 'electron';
-import spotify from './lib/spotify';
-import Store from './lib/store';
+const path = require('path');
+const url = require('url');
+const electron = require('electron');
+const spotify = require('./lib/spotify');
+const Store = require('./lib/store');
 
 const { app, BrowserWindow, Tray, globalShortcut, ipcMain } = electron;
 
 // Keep a global reference to win/tray to prevent garbage collection from ending the process.
-let win: Electron.BrowserWindow;
-let tray: Electron.Tray;
-let store: Store;
+let win;
+let tray;
+let store;
 
 app.dock.hide();
 app.on('ready', async () => {
-  async function showWindow(): Promise<void> {
+  async function showWindow() {
     win.webContents.send('settingsUpdated', store.get());
     win.webContents.send('playerStateUpdated', await spotify.getState());
     win.show();
@@ -21,7 +21,7 @@ app.on('ready', async () => {
 
   function toggleWindow(
     { x: trayX, y: trayY, width: trayWidth } = tray.getBounds()
-  ): void {
+  ) {
     if (win.isVisible()) {
       win.hide();
     } else {
@@ -70,29 +70,23 @@ app.on('ready', async () => {
 });
 
 ipcMain
-  .on('getState', async (event: Electron.Event) => {
+  .on('getState', async event => {
     event.sender.send('settingsUpdated', store.get());
     event.sender.send(
       'playerStateUpdated',
       await spotify.execCommand('getState')
     );
   })
-  .on('command', async (event: Electron.Event, command: string) =>
+  .on('command', async (event, command) =>
     event.sender.send('playerStateUpdated', await spotify.execCommand(command))
   )
-  .on('search', async (event: Electron.Event, params: string) =>
+  .on('search', async (event, params) =>
     event.sender.send(
       'searchResultsUpdated',
       await spotify.search(params, store.get())
     )
   )
-  .on(
-    'updateSettings',
-    (
-      event: Electron.Event,
-      settings: { clientId: string; clientSecret: string }
-    ) => {
-      store.set(settings);
-      event.sender.send('settingsUpdated', store.get());
-    }
-  );
+  .on('updateSettings', (event, settings) => {
+    store.set(settings);
+    event.sender.send('settingsUpdated', store.get());
+  });

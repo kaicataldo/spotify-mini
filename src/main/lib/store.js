@@ -1,18 +1,13 @@
-import * as path from 'path';
-import * as fs from 'fs';
+const path = require('path');
+const fs = require('fs');
 
-export default class Store {
-  _configFilePath: string;
-  _data: {
-    [index: string]: any;
-  };
-
-  constructor(configPath: string) {
+module.exports = class Store {
+  constructor(configPath) {
     this._configFilePath = configPath;
     this._data = this._getConfig();
   }
 
-  private _getConfig(): {} {
+  _getConfig() {
     let data;
     try {
       data = JSON.parse(this._readConfig());
@@ -27,11 +22,11 @@ export default class Store {
     return data;
   }
 
-  private _readConfig(): string {
+  _readConfig() {
     return fs.readFileSync(this._configFilePath, 'utf8');
   }
 
-  private _generateConfigFile(): void {
+  _generateConfigFile() {
     const dirname = path.dirname(this._configFilePath);
     if (!fs.existsSync(dirname)) {
       fs.mkdirSync(dirname);
@@ -41,13 +36,13 @@ export default class Store {
     }
   }
 
-  public get(setting?: string): any {
+  get(setting) {
     return setting ? this._data[setting] : this._data;
   }
 
-  public set(key: {} | string, val?: any): void {
+  set(key, val) {
     if (typeof key === 'object') {
-      this._data = { ...this._data, ...key };
+      this._data = Object.assign({}, this._data, key);
     } else if (typeof key === 'string') {
       this._data[key] = val;
     } else {
@@ -55,4 +50,4 @@ export default class Store {
     }
     fs.writeFileSync(this._configFilePath, JSON.stringify(this._data));
   }
-}
+};

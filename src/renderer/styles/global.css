@@ -1,0 +1,19 @@
+@import 'normalize.css';
+
+@value primaryColor from './colors.css';
+
+:global body {
+  background-color: #181818;
+  color: primaryColor;
+  letter-spacing: .015em;
+  font-size: 14px;
+  text-align: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-app-region: drag;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+:global svg {
+  -webkit-app-region: no-drag;
+}

@@ -1,14 +1,13 @@
-import * as childProcess from 'child_process';
-import * as request from 'request-promise-native';
-import commands from './appleScriptCommands';
-import { PlayerState, UserSettings, SearchResults } from '../../types';
+const childProcess = require('child_process');
+const request = require('request-promise-native');
+const commands = require('./appleScriptCommands');
 
 const { exec } = childProcess;
 
 const TOKEN_URI = 'https://accounts.spotify.com/api/token';
 const SEARCH_URI = 'https://api.spotify.com/v1/search';
 
-function execAppleScript(cmd: string): Promise<string> {
+function execAppleScript(cmd) {
   return new Promise((resolve, reject) => {
     exec(`osascript -e '${cmd}'`, (err, stdout) => {
       if (err) {
@@ -19,14 +18,14 @@ function execAppleScript(cmd: string): Promise<string> {
   });
 }
 
-async function getState(): Promise<PlayerState> {
+async function getState() {
   const { playerState } = commands;
   const serializedState = await execAppleScript(playerState);
   return JSON.parse(serializedState);
 }
 
-async function execCommand(cmd: string): Promise<PlayerState> {
-  let response: PlayerState;
+async function execCommand(cmd) {
+  let response;
   try {
     if (cmd !== 'getState') {
       await execAppleScript(commands[cmd]);
@@ -39,13 +38,7 @@ async function execCommand(cmd: string): Promise<PlayerState> {
   return response;
 }
 
-async function requestAccessToken({
-  clientId,
-  clientSecret
-}: {
-  clientId: string;
-  clientSecret: string;
-}): Promise<string> {
+async function requestAccessToken({ clientId, clientSecret }) {
   const { access_token } = JSON.parse(
     await request({
       method: 'POST',
@@ -63,10 +56,7 @@ async function requestAccessToken({
   return access_token;
 }
 
-async function requestSearchResults(
-  params: string,
-  accessToken: string
-): Promise<SearchResults> {
+async function requestSearchResults(params, accessToken) {
   return JSON.parse(
     await request({
       method: 'GET',
@@ -82,15 +72,12 @@ async function requestSearchResults(
   );
 }
 
-async function search(
-  params: string,
-  credentials: UserSettings
-): Promise<SearchResults> {
-  let response: SearchResults;
+async function search(params, credentials) {
+  let response;
   try {
     const accessToken = await requestAccessToken(credentials);
     const searchResults = await requestSearchResults(params, accessToken);
-    response = { ...searchResults, status: 'success' };
+    response = Object.assign({}, searchResults, { status: 'success' });
   } catch ({ message }) {
     response = { status: 'error', message };
     console.error(`Error: ${message}`);
@@ -98,7 +85,7 @@ async function search(
   return response;
 }
 
-export default {
+module.exports = {
   getState,
   execCommand,
   search

@@ -1,0 +1,23 @@
+@value primaryColor, secondaryColor from '../../styles/colors.css';
+
+.button {
+  border: 1px solid secondaryColor;
+  letter-spacing: 1px;
+  border-radius: 25px;
+  background: transparent;
+  font-size: 16px;
+  font-weight: bold;
+  color: primaryColor;
+  text-transform: uppercase;
+  padding: 2px 18px;
+  transition: all .1s ease-in-out;
+}
+
+.button:hover {
+  border-color: primaryColor;
+  transform: scale(1.1);
+}
+
+.button:focus {
+  outline: 0;
+}
