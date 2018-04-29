@@ -1,0 +1,51 @@
+@value primaryColor, secondaryColor from '../../styles/colors.css';
+
+.circleIcon {
+  border: 1px solid secondaryColor;
+  border-radius: 50%;
+  display: inline-block;
+  height: 36px;
+  width: 36px;
+  position: relative;
+  top: -6px;
+  transition: all .1s ease-in-out;
+  margin: 0 9px 0 6px;
+}
+
+.circleIcon:hover {
+  border-color: primaryColor;
+  transform: scale(1.1);
+}
+
+.playIcon svg,
+.pauseIcon svg {
+  fill: primaryColor;
+  position: relative;
+  width: 22px;
+}
+
+.playIcon svg {
+  top: 7px;
+  left: 2px;
+}
+
+.pauseIcon svg {
+  top: 7px;
+}
+
+.prevIcon svg {
+  fill: secondaryColor;
+  width: 22px;
+}
+
+.nextIcon svg {
+  fill: secondaryColor;
+  width: 22px;
+}
+
+.prevIcon:hover svg,
+.nextIcon:hover svg {
+  fill: primaryColor;
+}
+
+

@@ -1,0 +1,40 @@
+@value primaryColor, secondaryColor from '../../styles/colors.css';
+@value borderColor: rgba(255, 255, 255, 0.1);
+
+.title {
+  margin: 0 auto 24px auto;
+  padding-bottom: 8px;
+  border-bottom: 1px solid borderColor;
+}
+
+.header {
+  font-size: 20px;
+  text-align: left;
+  padding-bottom: 8px;
+  border-bottom: 1px solid borderColor;
+}
+
+.inputRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.textInput {
+  display: inline-block;
+  text-align: left;
+}
+
+.inputLabel {
+  color: secondaryColor;
+  display: inline-block;
+  text-align: left;
+}
+
+.backIcon svg {
+  fill: primaryColor;
+  position: fixed;
+  top: 13px;
+  left: 16px;
+  width: 22px;
+}

@@ -1,25 +1,11 @@
 module.exports = {
-  parser: 'typescript-eslint-parser',
   parserOptions: {
+    ecmaVersion: 2018,
     sourceType: 'module'
   },
   env: {
     es6: true,
     node: true
   },
-  extends: 'eslint:recommended',
-  rules: {
-    'no-console': 'off'
-  },
-  overrides: [
-    {
-      files: ['**/*.ts', '**/*.vue'],
-      rules: {
-        // Rules that are currently broken due to scope analysis for the TypeScript parser not being ready yet.
-        // These are caught by the compiler instead.
-        'no-unused-vars': 'off',
-        'no-undef': 'off'
-      }
-    }
-  ]
+  extends: ['eslint:recommended', 'prettier']
 };

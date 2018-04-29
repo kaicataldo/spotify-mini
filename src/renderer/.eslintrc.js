@@ -1,15 +1,14 @@
 /* eslint-env node */
 
 module.exports = {
-  extends: ['../../.eslintrc.js', 'plugin:vue/recommended'],
+  extends: ['../../.eslintrc.js', 'plugin:react/recommended'],
   parserOptions: {
-    parser: 'typescript-eslint-parser'
+    ecmaFeatures: {
+      jsx: true
+    }
   },
   env: {
     browser: true,
     node: false
-  },
-  rules: {
-    'no-console': 'error'
   }
 };

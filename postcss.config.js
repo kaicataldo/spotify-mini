@@ -1,6 +1,3 @@
 module.exports = {
-  parser: 'postcss-scss',
-  plugins: {
-    precss: {}
-  }
+  plugins: [require('postcss-import'), require('postcss-icss-values')]
 };
