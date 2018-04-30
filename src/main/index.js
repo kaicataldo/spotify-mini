@@ -56,10 +56,7 @@ app.on('ready', () => {
       slashes: true
     })
   );
-  win
-    .on('closed', app.quit)
-    .on('blur', win.hide)
-    .on('focus', showWindow);
+  win.on('closed', app.quit).on('blur', win.hide);
   win.setAlwaysOnTop(true);
   win.hide();
 
