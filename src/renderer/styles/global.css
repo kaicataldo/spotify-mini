@@ -1,15 +1,12 @@
 @import 'normalize.css';
 
-@value primaryColor from './colors.css';
+@value primaryColor, primaryBgColor from './colors.css';
 
 :global body {
-  background-color: #181818;
+  background-color: primaryBgColor;
   color: primaryColor;
-  letter-spacing: .015em;
-  font-size: 14px;
-  text-align: center;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  -webkit-app-region: drag;
   -webkit-font-smoothing: antialiased;
+  -webkit-app-region: drag;
   user-select: none;
 }

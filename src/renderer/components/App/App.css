@@ -1,0 +1,9 @@
+@value lightGradientBgColor, darkGradientBgColor from '../../styles/colors.css';
+
+.app {
+  height: 100%;
+  background: linear-gradient(180deg, lightGradientBgColor, darkGradientBgColor 33%);
+  letter-spacing: .015em;
+  font-size: 14px;
+  text-align: center;
+}

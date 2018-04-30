@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import electron from 'electron';
 import Player from '../Player/Player';
 import Settings from '../Settings/Settings';
+import styles from './App.css';
 
 const { ipcRenderer } = electron;
 
@@ -81,7 +82,7 @@ export default class App extends Component {
     }
 
     return (
-      <div>
+      <div className={styles.app}>
         {isSettingsShown ? (
           <Settings
             clientId={settingsState.clientId}
