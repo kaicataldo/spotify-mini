@@ -12,7 +12,9 @@ let tray;
 let store;
 
 app.dock.hide();
-app.on('ready', async () => {
+app.on('ready', () => {
+  let shouldPositionWin = true;
+
   async function showWindow() {
     win.webContents.send('settingsUpdated', store.get());
     win.webContents.send('playerStateUpdated', await spotify.getState());
@@ -25,14 +27,18 @@ app.on('ready', async () => {
     if (win.isVisible()) {
       win.hide();
     } else {
-      const trayWidthOffset = trayWidth / 2;
-      const [winWidth] = win.getSize();
-      const winWidthOffset = winWidth / 2;
+      if (shouldPositionWin) {
+        const trayWidthOffset = trayWidth / 2;
+        const [winWidth] = win.getSize();
+        const winWidthOffset = winWidth / 2;
 
-      // x must be an integer
-      const winX = Math.round(trayX + trayWidthOffset - winWidthOffset);
-      win.setPosition(winX, trayY);
+        // x must be an integer
+        const winX = Math.round(trayX + trayWidthOffset - winWidthOffset);
+        win.setPosition(winX, trayY);
+      }
+
       showWindow();
+      shouldPositionWin = false;
     }
   }
 
@@ -40,7 +46,8 @@ app.on('ready', async () => {
     width: 320,
     height: 528,
     backgroundColor: '#181818',
-    frame: false
+    frame: false,
+    resizable: false
   });
   win.loadURL(
     url.format({

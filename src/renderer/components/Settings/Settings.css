@@ -2,7 +2,7 @@
 @value borderColor: rgba(255, 255, 255, 0.1);
 
 .settings {
-  padding: 16px;
+  padding: 8px 16px 16px 16px;
 }
 
 .title {
