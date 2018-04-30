@@ -13,7 +13,3 @@
   -webkit-font-smoothing: antialiased;
   user-select: none;
 }
-
-:global svg {
-  -webkit-app-region: no-drag;
-}

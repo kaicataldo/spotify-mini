@@ -5,10 +5,12 @@ import styles from './NowPlaying.css';
 export default function NowPlaying({ playerState }) {
   return (
     <div>
-      <img className={styles.albumArtwork} src={playerState.artwork_url} />
-      <p>Artist: {playerState.artist_name}</p>
-      <p>Album: {playerState.album_name}</p>
-      <p>Track: {playerState.track_name}</p>
+      <img className={styles.albumArt} src={playerState.artwork_url} />
+      <div className={styles.info}>
+        <div className={styles.track}>{playerState.track_name}</div>
+        <div className={styles.album}>{playerState.album_name}</div>
+        <div className={styles.artist}>{playerState.artist_name}</div>
+      </div>
     </div>
   );
 }

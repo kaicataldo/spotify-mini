@@ -1,3 +1,4 @@
 @value primaryColor: #fff;
 @value secondaryColor: rgba(255, 255, 255, 0.7);
-@value backgroundColor: #181818;
+@value primaryBgColor: #181818;
+@value secondaryBgColor: #282828;

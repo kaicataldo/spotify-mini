@@ -1,13 +1,16 @@
 @value primaryColor, secondaryColor from '../../styles/colors.css';
 
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .circleIcon {
   border: 1px solid secondaryColor;
   border-radius: 50%;
-  display: inline-block;
   height: 36px;
   width: 36px;
-  position: relative;
-  top: -6px;
   transition: all .1s ease-in-out;
   margin: 0 9px 0 6px;
 }

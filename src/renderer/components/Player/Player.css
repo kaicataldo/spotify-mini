@@ -1,5 +1,9 @@
 @value borderColor: rgba(255, 255, 255, 0.1);
-@value primaryColor from '../../styles/colors.css';
+@value primaryColor, secondaryColor from '../../styles/colors.css';
+
+.player {
+  padding: 0 16px;
+}
 
 .title {
   margin: 0 auto 24px auto;
@@ -7,10 +11,19 @@
   border-bottom: 1px solid borderColor;
 }
 
-.settingsIcon svg {
-  fill: primaryColor;
+.settingsIcon {
   position: fixed;
-  top: 13px;
   right: 16px;
+}
+
+.settingsIcon svg {
+  fill: secondaryColor;
   width: 22px;
+  position: relative;
+  top: 1px;
+  transition: all .1s ease-in-out;
+}
+
+.settingsIcon svg:hover {
+  fill: primaryColor;
 }

@@ -1,0 +1,13 @@
+@value secondaryBgColor from '../../styles/colors.css';
+
+.bottomBar {
+  background-color: secondaryBgColor;
+  position: fixed;
+  bottom: 0;
+  padding: 16px 0;
+  height: 32px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

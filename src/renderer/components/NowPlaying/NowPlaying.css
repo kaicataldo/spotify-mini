@@ -1,3 +1,33 @@
-.albumArtwork {
+@value primaryColor, secondaryColor from '../../styles/colors.css';
+
+.row {
+  font-size: 14px;
+  margin: 6px;
+  color: secondaryColor;
+}
+
+.row:last-of-type {
+  margin: 4px 4px 0 4px;
+}
+
+.info {
+  margin: 16px 0 0 0;
+}
+
+.albumArt {
   width: 100%;
+}
+
+.track {
+  color: primaryColor;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.album {
+  composes: row;
+}
+
+.artist {
+  composes: row;
 }

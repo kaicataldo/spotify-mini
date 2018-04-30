@@ -13,7 +13,7 @@ export default function Controls({
   skipNext
 }) {
   return (
-    <div>
+    <div className={styles.controls}>
       <span
         className={styles.prevIcon}
         dangerouslySetInnerHTML={{ __html: prevSvg }}
