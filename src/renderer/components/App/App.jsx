@@ -24,6 +24,7 @@ export default class App extends Component {
     this.togglePlay = this.togglePlay.bind(this);
     this.skipNext = this.skipNext.bind(this);
     this.skipPrev = this.skipPrev.bind(this);
+    this.search = this.search.bind(this);
   }
 
   componentWillMount() {
@@ -70,9 +71,18 @@ export default class App extends Component {
     ipcRenderer.send('command', 'next');
   }
 
+  search(params) {
+    if (!params.length) {
+      return this.setState({ searchResults: null });
+    }
+
+    ipcRenderer.send('search', params);
+  }
+
   render() {
     const {
       isSettingsShown,
+      searchResults,
       player: playerState,
       settings: settingsState
     } = this.state;
@@ -95,9 +105,11 @@ export default class App extends Component {
           <Player
             playerState={playerState}
             showSettingsView={this.showSettingsView}
+            searchResults={searchResults}
             togglePlay={this.togglePlay}
             skipPrev={this.skipPrev}
             skipNext={this.skipNext}
+            search={this.search}
           />
         )}
       </div>

@@ -1,0 +1,32 @@
+@value lightGradientBgColor from '../../styles/colors.css';
+
+.searchBarContainer {
+  padding: 12px 0 16px 0;
+}
+
+.searchBar {
+  margin: 0 auto;
+  position: relative;
+  width: 180px;
+}
+
+.searchIcon {
+  left: 10px;
+  top: 8px;
+  position: absolute;
+  width: 14px;
+}
+
+.searchIcon svg {
+  fill: lightGradientBgColor;
+}
+
+.searchInput {
+  border: none;
+  border-radius: 25px;
+  color: lightGradientBgColor;
+  height: 28px;
+  outline: none;
+  padding-left: 24px;
+}
+

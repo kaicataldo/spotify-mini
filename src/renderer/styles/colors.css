@@ -4,3 +4,4 @@
 @value secondaryBgColor: #282828;
 @value lightGradientBgColor: #383838;
 @value darkGradientBgColor: primaryBgColor;
+@value borderColor: rgba(255, 255, 255, 0.1);

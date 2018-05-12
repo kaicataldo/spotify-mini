@@ -47,7 +47,8 @@ app.on('ready', () => {
     height: 528,
     backgroundColor: '#181818',
     frame: false,
-    resizable: false
+    // For ease of development using devtools
+    resizable: process.env.NODE_ENV === 'development' ? true : false
   });
   win.loadURL(
     url.format({

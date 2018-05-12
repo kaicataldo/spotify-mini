@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run build && electron dist/main/index.js",
-    "dev": "npm run build && nodemon --watch dist/main --exec 'electron dist/main/index.js' & webpack --watch --mode development",
+    "dev": "npm run build && NODE_ENV=development nodemon --watch dist/main --exec 'electron dist/main/index.js' & webpack --watch --mode development",
     "lint": "npm run eslint",
     "prettier": "prettier --write '{,!(dist)/**/}*.{js,jsx}'",
     "build": "rimraf dist && webpack --mode production",
