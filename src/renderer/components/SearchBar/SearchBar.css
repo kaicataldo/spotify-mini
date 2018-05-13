@@ -11,7 +11,7 @@
 }
 
 .searchIcon {
-  left: 10px;
+  left: 8px;
   top: 8px;
   position: absolute;
   width: 14px;
@@ -27,6 +27,7 @@
   color: lightGradientBgColor;
   height: 28px;
   outline: none;
-  padding-left: 24px;
+  padding-left: 26px;
+  padding-right: 10px;
 }
 

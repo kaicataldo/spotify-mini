@@ -20,16 +20,21 @@
 
 .inputRow {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .textInput {
   border: none;
+  border-radius: 25px;
   color: primaryBgColor;
   display: inline-block;
+  height: 18px;
   outline: none;
   text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .inputLabel {
