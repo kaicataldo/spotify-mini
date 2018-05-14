@@ -44,7 +44,7 @@ app.on('ready', () => {
 
   win = new BrowserWindow({
     width: 320,
-    height: 528,
+    height: 544,
     backgroundColor: '#181818',
     frame: false,
     // For ease of development using devtools
