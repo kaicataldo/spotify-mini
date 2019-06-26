@@ -48,7 +48,10 @@ app.on('ready', () => {
     backgroundColor: '#181818',
     frame: false,
     // For ease of development using devtools
-    resizable: process.env.NODE_ENV === 'development' ? true : false
+    resizable: process.env.NODE_ENV === 'development' ? true : false,
+    webPreferences: {
+      nodeIntegration: true
+    }
   });
   win.loadURL(
     url.format({

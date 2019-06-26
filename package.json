@@ -10,8 +10,12 @@
     "lint": "npm run eslint",
     "prettier": "prettier --write '{,!(dist)/**/}*.{js,jsx}'",
     "build": "rimraf dist && webpack --mode production",
-    "eslint": "eslint --ext .js,.jsx .",
-    "precommit": "lint-staged"
+    "eslint": "eslint --ext .js,.jsx ."
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "*.{js,jsx}": [
@@ -20,38 +24,38 @@
     ]
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.2.2",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "copy-webpack-plugin": "^4.5.1",
-    "css-loader": "^0.28.11",
-    "electron": "^1.8.4",
-    "eslint": "^4.19.1",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-react": "^7.7.0",
-    "file-loader": "^1.1.11",
-    "husky": "^0.14.3",
-    "lint-staged": "^7.0.0",
-    "nodemon": "^1.17.2",
-    "postcss-icss-values": "^2.0.1",
-    "postcss-import": "^11.1.0",
-    "postcss-loader": "^2.1.4",
-    "prettier": "^1.11.1",
-    "rimraf": "^2.6.1",
-    "style-loader": "^0.20.3",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.6",
+    "copy-webpack-plugin": "^5.0.3",
+    "css-loader": "^3.0.0",
+    "electron": "^5.0.5",
+    "eslint": "^6.0.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-react": "^7.14.2",
+    "file-loader": "^4.0.0",
+    "husky": "^2.4.1",
+    "lint-staged": "^8.2.1",
+    "nodemon": "^1.19.1",
+    "postcss-icss-values": "^2.0.2",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "prettier": "^1.18.2",
+    "rimraf": "^2.6.3",
+    "style-loader": "^0.23.1",
     "svg-inline-loader": "^0.8.0",
-    "webpack": "^4.2.0",
-    "webpack-cli": "^2.0.13"
+    "webpack": "^4.35.0",
+    "webpack-cli": "^3.3.5"
   },
   "dependencies": {
-    "normalize.css": "^8.0.0",
+    "normalize.css": "^8.0.1",
     "open-iconic": "^1.1.1",
-    "prop-types": "^15.6.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "request": "^2.85.0",
-    "request-promise-native": "^1.0.5"
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.7"
   }
 }

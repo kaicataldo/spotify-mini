@@ -1,9 +1,9 @@
 {
   "presets": [
-    "react",
-    ["env", {
+    "@babel/preset-react",
+    ["@babel/preset-env", {
       "targets": {
-        "electron": "1.8.4"
+        "electron": "5.0.5"
       }
     }]
   ]

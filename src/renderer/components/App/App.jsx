@@ -27,7 +27,7 @@ export default class App extends Component {
     this.search = this.search.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     ipcRenderer.on('playerStateUpdated', (event, playerState) => {
       this.setState({ player: playerState });
     });
