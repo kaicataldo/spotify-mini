@@ -1,118 +1,93 @@
-import React, { Component } from 'react';
-import electron from 'electron';
+import React, { useEffect, useState } from 'react';
 import Player from '../Player/Player';
 import Settings from '../Settings/Settings';
 import styles from './App.css';
 
-const { ipcRenderer } = electron;
+export default function App() {
+  const [player, setPlayer] = useState(null);
+  const [searchResults, setSearchResults] = useState(null);
+  const [settings, setSettings] = useState(null);
+  const [isSettingsShown, setIsSettingsShown] = useState(false);
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      player: null,
-      searchResults: null,
-      settings: null,
-      isSettingsShown: false
-    };
-
-    this.showPlayerView = this.showPlayerView.bind(this);
-    this.showSettingsView = this.showSettingsView.bind(this);
-    this.saveSettings = this.saveSettings.bind(this);
-    this.updateSettings = this.updateSettings.bind(this);
-    this.togglePlay = this.togglePlay.bind(this);
-    this.skipNext = this.skipNext.bind(this);
-    this.skipPrev = this.skipPrev.bind(this);
-    this.search = this.search.bind(this);
+  function showPlayerView() {
+    setIsSettingsShown(false);
   }
 
-  componentDidMount() {
-    ipcRenderer.on('playerStateUpdated', (event, playerState) => {
-      this.setState({ player: playerState });
+  function showSettingsView() {
+    setIsSettingsShown(true);
+  }
+
+  function saveSettings() {
+    window.api.send('updateSettings', { ...settings });
+  }
+
+  function updateSettings(opts) {
+    // TODO: Validate settings shape/escape input.
+    setSettings({ ...settings, ...opts });
+  }
+
+  function togglePlay() {
+    window.api.send('command', 'togglePlay');
+  }
+
+  function skipPrev() {
+    window.api.send('command', 'prev');
+  }
+
+  function skipNext() {
+    window.api.send('command', 'next');
+  }
+
+  function search(params) {
+    if (typeof params !== 'string' || !params.length) {
+      return setSearchResults(null);
+    }
+
+    // TODO: Validate/escape search input.
+    window.api.send('search', params);
+  }
+
+  useEffect(() => {
+    window.api.on('playerStateUpdated', (_event, playerState) => {
+      setPlayer(playerState);
     });
 
-    ipcRenderer.on('searchResultsUpdated', (event, searchResults) =>
-      this.setState({ searchResults })
+    window.api.on('searchResultsUpdated', (_event, searchResults) =>
+      setSearchResults(searchResults)
     );
 
-    ipcRenderer.on('settingsUpdated', (event, settings) =>
-      this.setState({ settings })
+    window.api.on('settingsUpdated', (_event, settings) =>
+      setSettings(settings)
     );
 
-    ipcRenderer.send('getState');
+    window.api.send('getState');
+  }, []);
+
+  if (!player) {
+    return null;
   }
 
-  showPlayerView() {
-    this.setState({ isSettingsShown: false });
-  }
-
-  showSettingsView() {
-    this.setState({ isSettingsShown: true });
-  }
-
-  saveSettings() {
-    ipcRenderer.send('updateSettings', this.state.settings);
-  }
-
-  updateSettings(opts) {
-    this.setState(prevState => ({ settings: Object.assign(prevState, opts) }));
-  }
-
-  togglePlay() {
-    ipcRenderer.send('command', 'togglePlay');
-  }
-
-  skipPrev() {
-    ipcRenderer.send('command', 'prev');
-  }
-
-  skipNext() {
-    ipcRenderer.send('command', 'next');
-  }
-
-  search(params) {
-    if (!params.length) {
-      return this.setState({ searchResults: null });
-    }
-
-    ipcRenderer.send('search', params);
-  }
-
-  render() {
-    const {
-      isSettingsShown,
-      searchResults,
-      player: playerState,
-      settings: settingsState
-    } = this.state;
-
-    if (!playerState) {
-      return null;
-    }
-
-    return (
-      <div className={styles.app}>
-        {isSettingsShown ? (
-          <Settings
-            clientId={settingsState.clientId}
-            clientSecret={settingsState.clientSecret}
-            showPlayerView={this.showPlayerView}
-            updateSettings={this.updateSettings}
-            saveSettings={this.saveSettings}
-          />
-        ) : (
-          <Player
-            playerState={playerState}
-            showSettingsView={this.showSettingsView}
-            searchResults={searchResults}
-            togglePlay={this.togglePlay}
-            skipPrev={this.skipPrev}
-            skipNext={this.skipNext}
-            search={this.search}
-          />
-        )}
-      </div>
-    );
-  }
+  return (
+    <div className={styles.app}>
+      {isSettingsShown ? (
+        <Settings
+          clientId={settings.clientId}
+          clientSecret={settings.clientSecret}
+          showPlayerView={showPlayerView}
+          updateSettings={updateSettings}
+          saveSettings={saveSettings}
+        />
+      ) : (
+        <Player
+          playerState={player}
+          showSettingsView={showSettingsView}
+          searchResults={searchResults}
+          togglePlay={togglePlay}
+          skipPrev={skipPrev}
+          skipNext={skipNext}
+          search={search}
+        />
+      )}
+    </div>
+  );
 }

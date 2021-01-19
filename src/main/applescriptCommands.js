@@ -35,5 +35,5 @@ module.exports = {
     set state to state & \"\\\"track_url\\\":\" & \"\\\"\" & spotify url of current track & \"\\\",\"
     set state to state & \"\\\"status\\\":\\\"running\\\"\"
     return state & \"}\"
-  `)
+  `),
 };

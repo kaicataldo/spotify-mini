@@ -44,13 +44,13 @@ async function requestAccessToken({ clientId, clientSecret }) {
       method: 'POST',
       uri: TOKEN_URI,
       form: {
-        grant_type: 'client_credentials'
+        grant_type: 'client_credentials',
       },
       headers: {
         Authorization: `Basic ${Buffer.from(
           `${clientId}:${clientSecret}`
-        ).toString('base64')}`
-      }
+        ).toString('base64')}`,
+      },
     })
   );
   return access_token;
@@ -63,11 +63,11 @@ async function requestSearchResults(params, accessToken) {
       uri: SEARCH_URI,
       qs: {
         q: params,
-        type: 'album,artist,track'
+        type: 'album,artist,track',
       },
       headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
+        Authorization: `Bearer ${accessToken}`,
+      },
     })
   );
 }
@@ -88,5 +88,5 @@ async function search(params, credentials) {
 module.exports = {
   getState,
   execCommand,
-  search
+  search,
 };

@@ -7,14 +7,14 @@ module.exports = {
   output: {
     filename: 'renderer/index.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist'
+    publicPath: '/dist',
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        use: 'babel-loader',
       },
       {
         test: /\.css$/,
@@ -23,27 +23,29 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              modules: true
-            }
+              modules: true,
+            },
           },
-          'postcss-loader'
-        ]
+          'postcss-loader',
+        ],
       },
       {
         test: /\.svg$/,
-        loader: 'svg-inline-loader'
-      }
-    ]
+        loader: 'svg-inline-loader',
+      },
+    ],
   },
   resolve: {
     extensions: ['.js', '.jsx'],
-    modules: [path.resolve(__dirname, 'src/renderer'), 'node_modules']
+    modules: [path.resolve(__dirname, 'src/renderer'), 'node_modules'],
   },
   plugins: [
-    new CopyWebpackPlugin([
-      { from: 'src/assets', to: 'assets' },
-      { from: 'src/main', to: 'main', ignore: ['.*.js'] },
-      { from: 'src/index.html' }
-    ])
-  ]
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'src/assets', to: 'assets' },
+        { from: 'src/main', to: 'main' },
+        { from: 'src/index.html' },
+      ],
+    }),
+  ],
 };

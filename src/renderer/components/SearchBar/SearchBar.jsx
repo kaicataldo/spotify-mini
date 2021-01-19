@@ -1,53 +1,41 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './SearchBar.css';
 import searchSvg from 'open-iconic/svg/magnifying-glass.svg';
 
-export default class SearchBar extends Component {
-  constructor(props) {
-    super(props);
+export default function SearchBar({ search, searchResults }) {
+  const [value, setValue] = useState('');
 
-    this.state = {
-      value: ''
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(e) {
+  function handleChange(e) {
     const value = e.target.value;
-    this.setState({ value });
-
+    setValue(value);
     // TODO This must be debounced
-    this.props.search(value);
+    search(value);
   }
 
-  render() {
-    return (
-      <div className={styles.searchBarContainer}>
-        <div className={styles.searchBar}>
-          <span
-            className={styles.searchIcon}
-            dangerouslySetInnerHTML={{ __html: searchSvg }}
-          />
-          <input
-            className={styles.searchInput}
-            type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-        </div>
-        <div>
-          {/* TODO: Actually render results */ JSON.stringify(
-            this.props.searchResults
-          )}
-        </div>
+  return (
+    <div className={styles.searchBarContainer}>
+      <div className={styles.searchBar}>
+        <span
+          className={styles.searchIcon}
+          dangerouslySetInnerHTML={{ __html: searchSvg }}
+        />
+        <input
+          className={styles.searchInput}
+          type="text"
+          value={value}
+          onChange={handleChange}
+        />
       </div>
-    );
-  }
+      <div>
+        {/* TODO: Actually render results */}
+        {JSON.stringify(searchResults)}
+      </div>
+    </div>
+  );
 }
 
 SearchBar.propTypes = {
   searchResults: PropTypes.object,
-  search: PropTypes.func
+  search: PropTypes.func,
 };
